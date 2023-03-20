@@ -6,6 +6,7 @@ const LandingPage = props => {
         <div>
             <NavBar/>
             <h1>This is landing page.</h1>
+
         </div>
     )
 }
