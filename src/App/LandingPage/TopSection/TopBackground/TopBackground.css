@@ -1,0 +1,6 @@
+.imageBackground {
+    width: 99vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: brightness(.4);
+}

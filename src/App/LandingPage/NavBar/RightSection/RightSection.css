@@ -1,0 +1,6 @@
+.rightSection {
+    margin-right: 8em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

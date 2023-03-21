@@ -1,0 +1,15 @@
+.MainColorButton {
+    color: white;
+    background-color: #242233;
+    cursor: pointer;
+    border: 1px solid grey;
+    border-radius: 1em;
+    padding: 0.7em 1.2em;
+    transition: 0.5s ease-out;
+    font-size: 1.4em;
+}
+
+.MainColorButton:hover {
+    border: 1px solid white;
+    transition: 0.5s ease-out;
+}

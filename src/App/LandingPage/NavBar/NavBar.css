@@ -1,6 +1,7 @@
 .NavBar {
-    height: 5em;
-    padding: 0.2em;
+    top: 0;
+    height: 7em;
+    padding: 2em;
     width: 100%;
     color: white;
     position: fixed;
@@ -9,38 +10,11 @@
     justify-content: space-between;
     align-items: center;
     transition: all 0.5s ease 0s;
+    font-size: 0.9em;
+    z-index: 2;
 }
 .NoTop {
     transition: all 0.5s ease 0s;
     background: #242233;
     height: 3em;
-}
-
-.logoTop {
-    scale: 0.4;
-}
-
-.rightSection {
-    margin-right: 2em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.navLinks {
-    list-style: none;
-}
-
-.navLinks li {
-    display: inline-block;
-    padding: 0em 1em;
-    font-size: 0.7em;
-}
-
-.navLinks li a {
-    transition: all 0.3s ease 0s;
-}
-
-.navLinks li a:hover {
-    color: #242233;
 }

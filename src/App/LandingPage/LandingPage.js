@@ -1,11 +1,13 @@
 import TopSection from "./TopSection/TopSection";
+import './LandingPage.css'
+import NavBar from "./NavBar/NavBar";
 
 const LandingPage = props => {
 
     return (
-        <div>
+        <div className="landingPage">
+            <NavBar/>
             <TopSection/>
-            <h1>This is landing page.</h1>
         </div>
     )
 }

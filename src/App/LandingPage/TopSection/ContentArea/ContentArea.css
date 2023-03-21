@@ -1,0 +1,36 @@
+section {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 50%;
+}
+
+section div {
+    margin-top: 1em;
+}
+
+.infoSection {
+    display: flex;
+    justify-content: center;
+}
+
+.singleIcon img {
+    width: 3em;
+}
+
+.singleIcon {
+    margin: 1em;
+}
+
+.singleInfo {
+    top: 100%
+}
+
+section p {
+    font-size: 1.2em;
+}

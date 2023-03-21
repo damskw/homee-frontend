@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import './NavBar.css';
-import logo from '../../../assets/landingpage/logo-no-background.png'
+import LeftSection from "./LeftSection/LeftSection";
+import RightSection from "./RightSection/RightSection";
 
 const SCROLL_POSITION = 50;
 
@@ -29,22 +30,8 @@ const NavBar = (props) => {
 
     return (
         <div className={navBarClasses}>
-            <div className="leftSection">
-                <img className="logoTop" src={logo} alt="logo"></img>
-            </div>
-            <div className="rightSection">
-                <nav>
-                    <ul className="navLinks">
-                        <li><a href="localhost://3000">How it works</a></li>
-                        <li><a href="localhost://3000">Pricing</a></li>
-                        <li><a href="localhost://3000">About</a></li>
-                        <li><a href="localhost://3000">FAQ</a></li>
-                        |
-                        <li><a href="localhost://3000">Log In</a></li>
-                    </ul>
-                </nav>
-                <button>Sign Up</button>
-            </div>
+           <LeftSection/>
+           <RightSection/>
         </div>
     );
 };
