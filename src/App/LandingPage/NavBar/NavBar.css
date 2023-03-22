@@ -1,0 +1,20 @@
+.NavBar {
+    top: 0;
+    height: 7em;
+    padding: 2em;
+    width: 100%;
+    color: white;
+    position: fixed;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s ease 0s;
+    font-size: 0.9em;
+    z-index: 1;
+}
+.NoTop {
+    transition: all 0.5s ease 0s;
+    background: #242233;
+    height: 3em;
+}

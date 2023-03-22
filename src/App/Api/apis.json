@@ -1,0 +1,5 @@
+{
+  "getAllUsers": "http://localhost:8080/api/v1/users/",
+  "createNewUser": "http://localhost:8080/api/v1/users",
+  "loginUser": "http://localhost:8080/api/v1/users/login"
+}

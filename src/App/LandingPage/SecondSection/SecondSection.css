@@ -1,0 +1,14 @@
+.secondSection {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 6em;
+    padding-bottom: 6em;
+    background-color: slategray;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 5em;
+}
+
