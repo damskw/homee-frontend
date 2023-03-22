@@ -1,9 +1,10 @@
 import React from "react";
+import './SingleNavLink.css'
 
 const SingleNavLink = props => {
 
     return (
-        <li><a href={props.href}>{props.text}</a></li>
+        <li><a className="singleLink" onClick={props.action} href={props.href}>{props.text}</a></li>
     )
 }
 

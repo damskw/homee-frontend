@@ -11,7 +11,7 @@
     align-items: center;
     transition: all 0.5s ease 0s;
     font-size: 0.9em;
-    z-index: 2;
+    z-index: 1;
 }
 .NoTop {
     transition: all 0.5s ease 0s;

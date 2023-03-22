@@ -1,5 +1,5 @@
 import './ContentArea.css'
-import MainColorButton from "../../MainColorButton/MainColorButton";
+import MainColorButton from "../../Buttons/MainColorButton/MainColorButton";
 import CheckedIcon from "../../Icons/CheckedIcon";
 
 

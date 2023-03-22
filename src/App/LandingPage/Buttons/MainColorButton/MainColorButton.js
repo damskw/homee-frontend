@@ -4,7 +4,7 @@ import './MainColorButton.css'
 const MainColorButton = props => {
 
     return (
-        <button className="MainColorButton">{props.text}</button>
+        <button onClick={props.onClick} className="MainColorButton">{props.text}</button>
     )
 }
 
