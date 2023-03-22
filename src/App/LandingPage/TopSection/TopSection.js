@@ -5,7 +5,7 @@ import ContentArea from "./ContentArea/ContentArea";
 const TopSection = props => {
 
     return (
-        <div>
+        <div className="topSection">
             <TopBackground/>
             <ContentArea/>
         </div>

@@ -1,0 +1,14 @@
+.singleCard {
+    padding: 4em 2em;
+    border-radius: 1em;
+    background-color: white;
+    max-width: 14em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.singleCard img {
+    width: 5em;
+}

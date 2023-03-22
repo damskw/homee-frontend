@@ -1,0 +1,26 @@
+.thirdSection {
+    display: flex;
+    justify-content: center;
+    padding-top: 8em;
+    padding-bottom: 8em;
+    background-color: #3D3939;
+    color: white;
+    gap: 5em;
+}
+
+.dashboardScreenshot img {
+    width: 30vw;
+}
+
+.infos {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.information {
+    font-size: 2em;
+}
