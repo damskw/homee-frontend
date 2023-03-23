@@ -16,12 +16,34 @@ const NavLinks = props => {
         window.location.reload();
     }
 
+    const onClickScrollToFeatures = () => {
+        const featuresDiv = document.querySelector(".secondSection");
+        if (featuresDiv) {
+            featuresDiv.scrollIntoView({behavior: "smooth"});
+        }
+    }
+
+    const onClickScrollToHowItLooks = () => {
+        const howItLooks = document.querySelector(".thirdSection");
+        if (howItLooks) {
+            howItLooks.scrollIntoView({behavior: "smooth"});
+        }
+    }
+
+    const onClickScrollToAbout = () => {
+        const about = document.querySelector(".footer");
+        if (about) {
+            about.scrollIntoView({behavior: "smooth"});
+        }
+    }
+
+
     function displayLogInLogOut(props) {
         if (!isLoggedIn) {
             return (
                 <SingleNavLink action={props.onAction} text="Log In"/>
             )
-        }
+        } 
         return (
             <SingleNavLink action={logOut} text="Log Out"/>
         )
@@ -30,9 +52,9 @@ const NavLinks = props => {
     return (
         <nav>
             <ul className="navLinks">
-                <SingleNavLink href="localhost://3000" text="How it works"/>
-                <SingleNavLink href="localhost://3000" text="Pricing"/>
-                <SingleNavLink href="localhost://3000" text="About"/>
+                <SingleNavLink action={onClickScrollToFeatures} href="localhost://3000" text="Features"/>
+                <SingleNavLink action={onClickScrollToHowItLooks} href="localhost://3000" text="How it looks"/>
+                <SingleNavLink action={onClickScrollToAbout} href="localhost://3000" text="About"/>
                 <SingleNavLink href="localhost://3000" text="FAQ"/>
                 |
                 {displayLogInLogOut(props)}
