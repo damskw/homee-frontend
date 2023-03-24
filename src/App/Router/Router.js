@@ -7,6 +7,9 @@ const RouterReact = () => (
         <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/dashboard" element={<Dashboard/>} />
+            <Route path="/dashboard/profile" element={<Dashboard/>} />
+            <Route path="/dashboard/devices" element={<Dashboard/>} />
+            <Route path="/dashboard/spaces" element={<Dashboard/>} />
             <Route path="*" element={<LandingPage />} />
         </Routes>
     </Router>

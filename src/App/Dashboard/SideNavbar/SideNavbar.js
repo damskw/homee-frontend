@@ -10,11 +10,13 @@ import devicesIcon from '../../../assets/icons/devices.png'
 import userProfile from '../../../assets/icons/profile.png'
 import logoutIcon from '../../../assets/icons/logout.png'
 import supportIcon from '../../../assets/icons/support.png'
+import { useNavigate } from "react-router-dom";
 
 
 const SideNavbar = props => {
 
     const [isShrink, setIsShrink] = useState(true);
+    const navigate = useNavigate();
 
     const changeOnShrink = useCallback(() => {
         changeHeaderImage(isShrink);
@@ -32,6 +34,24 @@ const SideNavbar = props => {
         }
     }
 
+    const navigateToProfile = () => {
+        navigate('/dashboard/profile');
+    }
+
+    const navigateToDevices = () => {
+        navigate('/dashboard/devices');
+    }
+
+    const navigateToDashboard = () => {
+        navigate('/dashboard')
+    }
+
+    const navigateToSpaces = () => {
+        navigate('/dashboard/spaces')
+    }
+
+
+
     useEffect(() => {
         changeOnShrink();
     }, [changeOnShrink]);
@@ -42,10 +62,10 @@ const SideNavbar = props => {
         onMouseLeave={() => setIsShrink(true)}>
             <SideNavbarHeader logo={isShrink ? logoIcon : fullLogo}/>
             <hr className="hrLineNavbar"/>
-            {isShrink ? <SideNavbarLink image={dashboardIcon}/> : <SideNavbarLink image={dashboardIcon} text="Dashboard"/>}
-            {isShrink ? <SideNavbarLink image={spacesIcon}/> : <SideNavbarLink image={spacesIcon} text="Spaces"/>}
-            {isShrink ? <SideNavbarLink image={devicesIcon}/> : <SideNavbarLink image={devicesIcon} text="Devices"/>}
-            {isShrink ? <SideNavbarLink image={userProfile}/> : <SideNavbarLink image={userProfile} text="My Profile"/>}
+            {isShrink ? <SideNavbarLink action={navigateToDashboard} image={dashboardIcon}/> : <SideNavbarLink action={navigateToDashboard} image={dashboardIcon} text="Dashboard"/>}
+            {isShrink ? <SideNavbarLink action={navigateToSpaces} image={spacesIcon}/> : <SideNavbarLink action={navigateToSpaces} image={spacesIcon} text="Spaces"/>}
+            {isShrink ? <SideNavbarLink action={navigateToDevices} image={devicesIcon}/> : <SideNavbarLink action={navigateToDevices} image={devicesIcon} text="Devices"/>}
+            {isShrink ? <SideNavbarLink action={navigateToProfile}  image={userProfile}/> : <SideNavbarLink action={navigateToProfile} image={userProfile} text="My Profile"/>}
             {isShrink ? <SideNavbarLink image={logoutIcon}/> : <SideNavbarLink image={logoutIcon} text="Logout"/>}
             {isShrink ? <SideNavbarLink image={supportIcon}/> : <SideNavbarLink image={supportIcon} text="Support"/>}
         </nav>

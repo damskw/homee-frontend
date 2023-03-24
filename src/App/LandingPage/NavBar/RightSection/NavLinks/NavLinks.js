@@ -1,18 +1,19 @@
 import './NavLinks.css'
 import React, {useEffect, useState} from "react";
 import SingleNavLink from "./SingleNavLink/SingleNavLink";
+import {authenticate} from "../../../../Authenticate/authenticate";
 
 const NavLinks = props => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        let loggedIn = sessionStorage.getItem("loggedIn");
-        loggedIn === "true" ? setIsLoggedIn(true) : setIsLoggedIn(false);
+        const user = authenticate.getUser();
+        user ? setIsLoggedIn(true) : setIsLoggedIn(false);
     }, []);
 
     function logOut() {
-        sessionStorage.setItem("loggedIn", "false");
+        authenticate.logoutUser();
         window.location.reload();
     }
 

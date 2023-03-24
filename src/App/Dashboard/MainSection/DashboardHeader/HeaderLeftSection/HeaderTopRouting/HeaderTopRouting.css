@@ -1,0 +1,10 @@
+.headerTopRouting img {
+    width: 1.5em;
+}
+
+.headerTopRouting {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: white;
+}

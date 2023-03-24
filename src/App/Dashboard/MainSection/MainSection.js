@@ -1,13 +1,13 @@
 import './MainSection.css'
 import DashboardHeader from "./DashboardHeader/DashboardHeader";
-import InsideFirstSection from "./InsideFirstSection/InsideFirstSection";
+import InformativeSection from "./InformativeSection/InformativeSection";
 
 const MainSection = props => {
 
     return (
         <div className="dashboardMainSection">
             <DashboardHeader/>
-            <InsideFirstSection/>
+            <InformativeSection/>
         </div>
     )
 }
