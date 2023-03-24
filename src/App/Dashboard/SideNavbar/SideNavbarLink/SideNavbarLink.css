@@ -1,0 +1,23 @@
+.sideNavbarLink img {
+    width: 2em;
+}
+
+.sideNavbarLink {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-radius: 0.5em;
+    transition: all 0.4s ease;
+    margin-bottom: 4em;
+}
+
+.sideNavbarLink:hover {
+    transition: all 0.4s ease;
+    cursor: pointer;
+    background-color: lightslategray;
+}

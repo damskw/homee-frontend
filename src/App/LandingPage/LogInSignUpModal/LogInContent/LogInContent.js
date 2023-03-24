@@ -4,6 +4,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import ErrorModal from "../ErrorModal/ErrorModal";
 import Spinner from "../../../Spinners/Spinner";
+import {authenticate} from "../../../Authenticate/authenticate";
 
 const LogInContent = props => {
 
@@ -15,7 +16,6 @@ const LogInContent = props => {
         e.preventDefault();
         setIsLoading(true);
         const data = Object.fromEntries(new FormData(e.target).entries());
-        delete data.repeatPassword;
         const user = await dataHandler.loginUser(data);
         setIsLoading(false);
         if (!user) {
@@ -23,8 +23,7 @@ const LogInContent = props => {
             return;
         }
         navigate('/dashboard');
-        sessionStorage.setItem("loggedIn", "true");
-        window.location.reload();
+        authenticate.loginUser(user.id);
     }
 
     return (
@@ -36,7 +35,6 @@ const LogInContent = props => {
                 <form className="loginForm" onSubmit={onSubmitClick}>
                     <input type="text" name="username" placeholder="Username / email"></input>
                     <input type="password" name="password" placeholder="Password"></input>
-                    <input type="password" name="repeatPassword" placeholder="Repeat password"></input>
                     <button className="loginButton" type="submit">Submit</button>
                 </form>
             </div>

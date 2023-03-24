@@ -1,13 +1,21 @@
 import api from './apis.json'
 
 export let dataHandler = {
-    getUsers: async function() {
+    getUsers: async function () {
         return await apiGet(api.getAllUsers);
     },
-    createNewUser: async function(data) {
+    createNewUser: async function (data) {
         return await apiPost(api.createNewUser, data);
     },
-    loginUser: async function(data) {
+    getDevicesForUser: async function (userId) {
+        const getUserDevicesUrl = api.getUserDevices.replace("$userId", userId);
+        return await apiGet(getUserDevicesUrl);
+    },
+    getSpacesForUser: async function (userId) {
+        const getUserSpacesUrl = api.getUserSpaces.replace("$userId", userId);
+        return await apiGet(getUserSpacesUrl);
+    },
+    loginUser: async function (data) {
         return await apiPost(api.loginUser, data);
     }
 }

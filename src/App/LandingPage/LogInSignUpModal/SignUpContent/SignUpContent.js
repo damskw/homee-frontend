@@ -4,6 +4,7 @@ import {useState} from "react";
 import Spinner from "../../../Spinners/Spinner";
 import { useNavigate } from 'react-router-dom';
 import ErrorModal from "../ErrorModal/ErrorModal";
+import {authenticate} from "../../../Authenticate/authenticate";
 
 const SignUpContent = props => {
 
@@ -23,8 +24,7 @@ const SignUpContent = props => {
             return;
         }
         navigate('/dashboard');
-        sessionStorage.setItem("loggedIn", "true");
-        window.location.reload();
+        authenticate.loginUser(user.id);
     }
 
     const contentClasses = `signUpContent ${isLoading ? "hidden" : ""}`;
