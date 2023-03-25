@@ -1,30 +1,13 @@
 import './SpacesSection.css'
-import {useEffect, useState} from "react";
-import {dataHandler} from "../../../../Api/dataHandler";
-import {authenticate} from "../../../../Authenticate/authenticate";
+import InformativeSectionWrapper from "../InformativeSectionWrapper/InformativeSectionWrapper";
+import topImage from '../../../../../assets/dashboard/user_spaces.jpg'
+import SpacesContent from "./SpacesContent/SpacesContent";
 
 const SpacesSection = props => {
-    const [spaces, setSpaces] = useState([]);
 
-    useEffect(() => {
-        const user = authenticate.getUser();
-        async function fetchSpaces() {
-            const spaces = await dataHandler.getSpacesForUser(user.id);
-            setSpaces(spaces);
-        }
-
-        fetchSpaces();
-    }, [])
 
     return (
-        <div className="spacesSection">
-            <h1>Spaces</h1>
-            <ul>
-                {spaces.map((space) => (
-                    <li key={space.id}>{space.name}</li>
-                ))}
-            </ul>
-        </div>
+        <InformativeSectionWrapper content={<SpacesContent/>} topImage={topImage} onImageText=""/>
     )
 }
 

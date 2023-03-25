@@ -1,0 +1,52 @@
+.singleSpace {
+    min-height: 2em;
+    padding: 0.1em 1em 1.5em;
+    border-radius: 1em;
+    border: 1px solid black;
+    background: slategray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.singleSpace h2 {
+    margin-bottom: 0.3em;
+}
+
+.singleSpaceRight {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.singleSpaceEditDelete {
+    display: flex;
+    flex-direction: column;
+}
+
+.singleSpaceEditDeleteIcons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#editSpaceIcon {
+    scale: 1.2;
+}
+
+#editSpaceIcon:hover {
+    cursor: pointer;
+    color: lightblue;
+}
+
+#deleteSpaceIcon:hover {
+    cursor: pointer;
+    color: red;
+}
+
+#deleteSpaceIcon {
+    scale: 1.2;
+}
