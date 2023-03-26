@@ -1,0 +1,7 @@
+.mainPanelSectionSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6em;
+    margin-right: 6em;
+}

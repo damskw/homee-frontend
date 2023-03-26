@@ -3,6 +3,7 @@ import {useLocation} from "react-router-dom";
 import ProfileSection from "./ProfileSection/ProfileSection";
 import DevicesSection from "./DevicesSection/DevicesSection";
 import SpacesSection from "./SpacesSection/SpacesSection";
+import MainPanel from "./MainPanel/MainPanel";
 
 const InformativeSection = props => {
     const location = useLocation();
@@ -21,7 +22,7 @@ const InformativeSection = props => {
             case 'spaces/edit-space':
                 return <SpacesSection/>
             default:
-                return <ProfileSection/>
+                return <MainPanel/>
         }
     }
 

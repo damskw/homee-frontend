@@ -1,0 +1,137 @@
+
+@media screen and (min-width: 556px) {
+    .muiBox {
+        flex-basis: 100%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 100%;
+    }
+}
+
+@media screen and (min-width: 840px) {
+    .muiBox {
+        flex-basis: 20%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 20%;
+    }
+}
+
+
+
+.muiBoxWrapper {
+    margin-bottom: 12px;
+    opacity: 1;
+    background: transparent;
+    color: rgb(52, 71, 103);
+    box-shadow: none;
+}
+
+
+.muiBoxWrapperInside {
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-width: 0px;
+    overflow-wrap: break-word;
+    background-color: #242233;
+    background-clip: border-box;
+    border: 0px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.75rem;
+    /*box-shadow: rgba(0, 0, 0, 0.1) 0rem 0.25rem 0.375rem -0.0625rem, rgba(0, 0, 0, 0.06) 0rem 0.125rem 0.25rem -0.0625rem;*/
+    box-shadow: white 0rem 0.25rem 0.375rem -0.0625rem, slategray 0rem 0.125rem 0.25rem -0.0625rem;
+    overflow: visible;
+}
+
+.muiBoxWrapperInside:hover {
+    box-shadow: lightblue 0rem 0.25rem 0.375rem -0.0625rem, lightblue 0rem 0.125rem 0.25rem -0.0625rem;
+    cursor: pointer;
+}
+
+.muiBoxBottom {
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    opacity: 1;
+    background: transparent;
+    color: rgb(52, 71, 103);
+    box-shadow: none;
+}
+
+.muiBoxUpper {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding-top: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    opacity: 1;
+    background: transparent;
+    color: rgb(52, 71, 103);
+    box-shadow: none;
+    max-height: 3em;
+}
+
+.muiBoxIcon {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    margin-top: -24px;
+    opacity: 1;
+    background: linear-gradient(195deg, rgb(66, 66, 74), rgb(25, 25, 25));
+    color: rgb(255, 255, 255);
+    border-radius: 0.75rem;
+    box-shadow: rgba(0, 0, 0, 0.14) 0rem 0.25rem 1.25rem 0rem, rgba(64, 64, 64, 0.4) 0rem 0.4375rem 0.625rem -0.3125rem;
+}
+
+.muiBoxText {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: right;
+    line-height: 1.25;
+    opacity: 1;
+    background: transparent;
+    box-shadow: none;
+    color: white;
+}
+
+.muiBoxBottom {
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    opacity: 1;
+    background: transparent;
+    box-shadow: none;
+    color: white;
+}
+
+.muiBoxHr {
+    flex-shrink: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.12);
+    border-right: 0px solid rgba(0, 0, 0, 0.12);
+    border-left: 0px solid rgba(0, 0, 0, 0.12);
+    background-color: transparent;
+    height: 0.0625rem;
+    margin: 1rem 0px;
+    border-bottom: none;
+    opacity: 0.25;
+    /*background-image: linear-gradient(to right, rgba(52, 71, 103, 0), rgba(52, 71, 103, 0.4), rgba(52, 71, 103, 0)) !important;*/
+    background-image: linear-gradient(to right, white, rgba(52, 71, 103, 0.4), white) !important;
+}
+
+#muiBoxIconInside {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    display: inline-block;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+}

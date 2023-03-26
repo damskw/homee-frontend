@@ -2,40 +2,52 @@ import api from './apis.json'
 
 export let dataHandler = {
     getUsers: async function () {
-        return await apiGet(api.getAllUsers);
+        return await apiGet(api.apiUrl + api.getAllUsers);
     },
     getSingleSpace: async function (spaceId) {
-        const getSpaceUrl = api.getSingleSpace.replace("$spaceId", spaceId);
+        const getSpaceUrl = api.apiUrl + api.getSingleSpace.replace("$spaceId", spaceId);
         return await apiGet(getSpaceUrl);
     },
     updateSpace: async function (data) {
-        const updateSpaceUrl = api.updateSpace.replace("$spaceId", data.id);
+        const updateSpaceUrl = api.apiUrl + api.updateSpace.replace("$spaceId", data.id);
         return await apiPutWithBody(updateSpaceUrl, data);
     },
     deleteSpaceWithDevices: async function(spaceId) {
-      const deleteSpaceUrl = api.deleteSpaceCascade.replace("$spaceId", spaceId);
+      const deleteSpaceUrl = api.apiUrl + api.deleteSpaceCascade.replace("$spaceId", spaceId);
       return await apiDelete(deleteSpaceUrl);
     },
     createNewUser: async function (data) {
-        return await apiPost(api.createNewUser, data);
+        return await apiPost(api.apiUrl + api.createNewUser, data);
     },
     createNewSpace: async function (data) {
-        return await apiPost(api.createNewSpace, data);
+        return await apiPost(api.apiUrl + api.createNewSpace, data);
     },
     assignSpaceToUser: async function (spaceId, userId) {
-        const assignSpaceUrl = api.assignSpaceToUser.replace("$userId", userId).replace("$spaceId", spaceId);
+        const assignSpaceUrl = api.apiUrl + api.assignSpaceToUser.replace("$userId", userId).replace("$spaceId", spaceId);
         return await apiPutNoBody(assignSpaceUrl);
     },
     getDevicesForUser: async function (userId) {
-        const getUserDevicesUrl = api.getUserDevices.replace("$userId", userId);
+        const getUserDevicesUrl = api.apiUrl + api.getUserDevices.replace("$userId", userId);
         return await apiGet(getUserDevicesUrl);
     },
+    countUserDevices: async function (userId) {
+      const countUserDevicesUrl = api.apiUrl + api.countUserDevices.replace("$userId", userId);
+      return await apiGet(countUserDevicesUrl);
+    },
+    getActivitiesForUserDevices: async function(userId) {
+      const getActivitiesUrl = api.apiUrl + api.getActivitiesForUserDevices.replace("$userId", userId);
+      return await apiGet(getActivitiesUrl);
+    },
+    countUserSpaces: async function (userId) {
+        const countUserSpacesUrl = api.apiUrl + api.countUserSpaces.replace("$userId", userId);
+        return await apiGet(countUserSpacesUrl);
+    },
     getSpacesForUser: async function (userId) {
-        const getUserSpacesUrl = api.getUserSpaces.replace("$userId", userId);
+        const getUserSpacesUrl = api.apiUrl + api.getUserSpaces.replace("$userId", userId);
         return await apiGet(getUserSpacesUrl);
     },
     loginUser: async function (data) {
-        return await apiPost(api.loginUser, data);
+        return await apiPost(api.apiUrl + api.loginUser, data);
     }
 }
 
