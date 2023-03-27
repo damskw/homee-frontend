@@ -1,13 +1,14 @@
 import './DevicesSection.css'
 import InformativeSectionWrapper from "../InformativeSectionWrapper/InformativeSectionWrapper";
-import topImage from '../../../../../assets/dashboard/user_spaces.jpg'
+import topImage from '../../../../../assets/dashboard/devices_background.jpg'
+import DevicesContent from "./DevicesContent/DevicesContent";
 
 
 const DevicesSection = props => {
 
 
     return (
-        <InformativeSectionWrapper content={<h1>tekst</h1>} topImage={topImage} onImageText=""/>
+        <InformativeSectionWrapper content={<DevicesContent/>} topImage={topImage} onImageText=""/>
     )
 }
 

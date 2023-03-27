@@ -8,7 +8,7 @@ const MuiBox = props => {
     }
 
     return (
-        <div className="muiBox">
+        <div className="muiBox" onClick={props.onClick}>
             <div className="muiBoxWrapper">
                 <div className="muiBoxWrapperInside">
                     <div className="muiBoxUpper">
