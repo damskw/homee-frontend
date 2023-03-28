@@ -12,7 +12,6 @@ const DisplayDevices = props => {
     const [user, setUser] = useState(null);
     const devicesList = devices.map((d) =>
     {
-        console.log(d);
         return <SingleDevice key={d.id} device={d}/>
     }
     );

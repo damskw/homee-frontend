@@ -26,9 +26,23 @@ export let dataHandler = {
         const assignSpaceUrl = api.apiUrl + api.assignSpaceToUser.replace("$userId", userId).replace("$spaceId", spaceId);
         return await apiPutNoBody(assignSpaceUrl);
     },
+    assignDeviceToSpace: async function (deviceId, spaceId) {
+      const assignDeviceUrl = api.apiUrl + api.assignDeviceToSpace.replace("$deviceId", deviceId).replace("$spaceId", spaceId);
+      return await apiPutNoBody(assignDeviceUrl);
+    },
+    addNewDevice: async function(data) {
+      return await apiPost(api.apiUrl + api.addNewDevice, data);
+    },
     getDevicesForUser: async function (userId) {
         const getUserDevicesUrl = api.apiUrl + api.getUserDevices.replace("$userId", userId);
         return await apiGet(getUserDevicesUrl);
+    },
+    getSingleDevice: async function(deviceId) {
+      const getDeviceUrl = api.apiUrl + api.getSingleDevice.replace("$deviceId", deviceId);
+      return await apiGet(getDeviceUrl);
+    },
+    getDeviceTypes: async function() {
+        return await apiGet(api.apiUrl + api.getDeviceTypes);
     },
     countUserDevices: async function (userId) {
       const countUserDevicesUrl = api.apiUrl + api.countUserDevices.replace("$userId", userId);
