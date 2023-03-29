@@ -37,8 +37,7 @@ const SpaceForm = props => {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(e.target).entries());
         data.id = id;
-        const updatedSpace = await dataHandler.updateSpace(data);
-        console.log(updatedSpace);
+        await dataHandler.updateSpace(data);
         navigate('/dashboard/spaces')
     }
 

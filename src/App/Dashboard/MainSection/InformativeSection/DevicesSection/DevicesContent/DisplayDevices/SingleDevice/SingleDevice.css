@@ -25,5 +25,11 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.editDeleteDevice {
+    width: 30%;
+    display: flex;
+    gap: 1em;
 }

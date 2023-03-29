@@ -13,7 +13,6 @@ const DevicesForm = props => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('deviceId');
     const [device, setDevice] = useState(null);
-    const [user, setUser] = useState("");
     const [spaces, setSpaces] = useState([]);
     const [deviceTypes, setDeviceTypes] = useState([]);
     const spacesList = spaces.map((s) =>
@@ -26,7 +25,6 @@ const DevicesForm = props => {
 
     useEffect (() => {
         const user = authenticate.getUser();
-        setUser(user);
         async function fetchDevice() {
             const deviceApi = await dataHandler.getSingleDevice(id);
             setDevice(deviceApi);
@@ -58,12 +56,20 @@ const DevicesForm = props => {
 
     // TODO
     async function onSubmitEdit(e) {
-        console.log(user);
-        // e.preventDefault();
-        // const data = Object.fromEntries(new FormData(e.target).entries());
-        // data.id = id;
-        // console.log(data);
-        // navigate('/dashboard/devices')
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.target).entries());
+        data.id = id;
+        await dataHandler.updateDevice(data);
+        navigate('/dashboard/devices')
+    }
+
+    function renderSelectSpace() {
+        return (
+            <select name="spaceId" className="selectSpaces" defaultValue="" required>
+                <option className="deviceOption" value="" disabled>Select your space</option>
+                {spacesList}
+            </select>
+        )
     }
 
     const onArrowClick = () => {
@@ -85,20 +91,17 @@ const DevicesForm = props => {
                 <form onSubmit={device ? onSubmitEdit : onSubmitAddDevice}>
                     <input required type="text" defaultValue={device?.name || ""} name="name" placeholder={device ? device.name : "Name"}/>
                     <input required type="text" defaultValue={device?.model || ""} name="model" placeholder={device ? device.model : "Model"}/>
-                    <select name="deviceType" className="deviceTypes" defaultValue="" required>
+                    <select name="deviceType" className="deviceTypes" defaultValue={device?.deviceType || ""} required>
                         <option className="deviceOption" value="" disabled>Select device type</option>
                         {deviceTypesList}
                     </select>
                     <input required type="text" defaultValue={device?.spot || ""} name="spot" placeholder={device ? device.spot : "Spot"}/>
-                    <input type="text" defaultValue={device?.warrantyStart || ""} name="warrantyStart" placeholder={device ? device.warrantyStart : "(Optional) Warranty start [RRRR-mm-DD]"}/>
-                    <input type="text" defaultValue={device?.warrantyEnd || ""} name="warrantyEnd" placeholder={device ? device.warrantyEnd : "(Optional) Warranty end [RRRR-mm-DD]"}/>
-                    <input type="text" defaultValue={device?.purchaseDate || ""} name="purchaseDate" placeholder={device ? device.purchaseDate : "(Optional) Purchase date [RRRR-mm-DD]"}/>
-                    <input type="number" defaultValue={device?.purchasePrice || ""} name="purchasePrice" placeholder={device ? device.purchasePrice : "(Optional) Purchase price"}/>
-                    <textarea cols="25" rows="3" required defaultValue={device?.about || ""} name="about" placeholder={device ? device.about : "Description"}/>
-                    <select name="spaceId" className="selectSpaces" defaultValue="" required>
-                        <option className="deviceOption" value="" disabled>Select your space</option>
-                        {spacesList}
-                    </select>
+                    <input type="text" defaultValue={device?.warrantyStart || ""} name="warrantyStart" placeholder="(Optional) Warranty start [RRRR-mm-DD]"/>
+                    <input type="text" defaultValue={device?.warrantyEnd || ""} name="warrantyEnd" placeholder="(Optional) Warranty end [RRRR-mm-DD]"/>
+                    <input type="text" defaultValue={device?.purchaseDate || ""} name="purchaseDate" placeholder="(Optional) Purchase date [RRRR-mm-DD]"/>
+                    <input type="number" defaultValue={device?.purchasePrice || ""} name="purchasePrice" placeholder="(Optional) Purchase price"/>
+                    <textarea cols="25" rows="3" required defaultValue={device?.about || ""} name="about" placeholder="Description"/>
+                    {device ? null : renderSelectSpace()}
                     <DashboardContentButton text="Submit"/>
                 </form>
             </div>
