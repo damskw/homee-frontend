@@ -1,0 +1,11 @@
+.informativeSectionWrapper {
+    position: relative;
+    opacity: 1;
+    background: transparent;
+    color: rgb(52, 71, 103);
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

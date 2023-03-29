@@ -1,0 +1,11 @@
+.displayDevices {
+    display: flex;
+    flex-direction: column;
+}
+
+.allDevices {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    place-items: center;
+    gap: 5em;
+}

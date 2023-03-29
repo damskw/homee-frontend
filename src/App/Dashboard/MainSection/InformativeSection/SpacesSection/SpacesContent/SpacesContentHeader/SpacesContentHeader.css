@@ -1,0 +1,7 @@
+.spacesContentHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1em;
+}

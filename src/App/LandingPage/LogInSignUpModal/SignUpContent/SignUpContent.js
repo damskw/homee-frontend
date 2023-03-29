@@ -24,7 +24,7 @@ const SignUpContent = props => {
             return;
         }
         navigate('/dashboard');
-        authenticate.loginUser(user.id);
+        authenticate.loginUser(user.id, user.username);
     }
 
     const contentClasses = `signUpContent ${isLoading ? "hidden" : ""}`;

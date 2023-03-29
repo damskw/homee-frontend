@@ -7,11 +7,11 @@ import {useEffect} from "react";
 
 const Dashboard = props => {
     const navigate = useNavigate();
-    const isLoggedIn = authenticate.getUser();
+    const user = authenticate.getUser();
 
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (!user) {
             return navigate('/');
         }
     })

@@ -1,0 +1,8 @@
+.mainPanelFirstSection {
+    padding-top: 2em;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 3em;
+}

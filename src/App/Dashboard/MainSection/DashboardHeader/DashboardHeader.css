@@ -12,6 +12,7 @@
     background-color: transparent;
     border-radius: 0.75em;
     transition: all 0.5s ease;
+    z-index: 1;
 }
 
 .onScrollHeader {

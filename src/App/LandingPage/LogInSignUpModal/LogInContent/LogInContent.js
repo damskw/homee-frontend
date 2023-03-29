@@ -23,13 +23,15 @@ const LogInContent = props => {
             return;
         }
         navigate('/dashboard');
-        authenticate.loginUser(user.id);
+        authenticate.loginUser(user.id, user.username);
     }
+
+    const contentClasses = `logInContent ${isLoading ? "hidden" : ""}`;
 
     return (
         <div>
             {isLoading ? <Spinner/> : null}
-            <div className="logInContent">
+            <div className={contentClasses}>
                 {isError ? <ErrorModal text="Incorrect data."/> : null}
                 <h2>Log in as existing user</h2>
                 <form className="loginForm" onSubmit={onSubmitClick}>

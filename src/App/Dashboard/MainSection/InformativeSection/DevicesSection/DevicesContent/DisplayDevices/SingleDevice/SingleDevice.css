@@ -1,0 +1,35 @@
+.singleDevice {
+    max-width: 18em;
+    min-width: 15em;
+    min-height: 10em;
+    background-color: slategray;
+    border-radius: 0.5em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #242233;
+    transition: all 0.2s ease;
+    gap: 1em;
+}
+
+.singleDevice:hover {
+    transition: all 0.2s ease;
+    border: 1px solid lightblue;
+    cursor: pointer;
+}
+
+.devicesNameSingle {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.editDeleteDevice {
+    width: 30%;
+    display: flex;
+    gap: 1em;
+}
