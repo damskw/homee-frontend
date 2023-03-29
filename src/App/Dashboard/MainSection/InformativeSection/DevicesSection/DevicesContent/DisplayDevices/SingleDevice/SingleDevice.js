@@ -1,6 +1,7 @@
 import './SingleDevice.css'
 import DashboardContentButton from "../../../../../../Buttons/DashboardContentButton/DashboardContentButton";
 import {useNavigate} from "react-router-dom";
+import {dataHandler} from "../../../../../../../Api/dataHandler";
 
 
 const SingleDevice = props => {
@@ -12,7 +13,7 @@ const SingleDevice = props => {
     }
 
     async function onDeleteClickAction() {
-
+        await dataHandler.deleteDevice(props.device.id);
         window.location.reload();
     }
 

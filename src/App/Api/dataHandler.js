@@ -34,8 +34,12 @@ export let dataHandler = {
       return await apiPost(api.apiUrl + api.addNewDevice, data);
     },
     updateDevice: async function (data) {
-        const updateDeviceUrl = api.apiUrl + api.updateDevice.replace("deviceId", data.id);
+        const updateDeviceUrl = api.apiUrl + api.updateDevice.replace("$deviceId", data.id);
         return await apiPutWithBody(updateDeviceUrl, data);
+    },
+    deleteDevice: async function (deviceId) {
+        const deleteDeviceUrl = api.apiUrl + api.deleteDevice.replace("$deviceId", deviceId);
+        return await apiDelete(deleteDeviceUrl);
     },
     getDevicesForUser: async function (userId) {
         const getUserDevicesUrl = api.apiUrl + api.getUserDevices.replace("$userId", userId);
