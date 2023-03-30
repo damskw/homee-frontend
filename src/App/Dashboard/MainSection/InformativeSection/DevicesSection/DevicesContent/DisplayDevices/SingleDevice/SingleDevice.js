@@ -17,6 +17,12 @@ const SingleDevice = props => {
         window.location.reload();
     }
 
+    const navigateToUploadImage = () => {
+        navigate(`/dashboard/devices/update-image?deviceId=${props.device.id}`);
+    }
+
+
+
 
     return (
         <div className="singleDevice">
@@ -27,11 +33,13 @@ const SingleDevice = props => {
                 </div>
                 <span>{props.device.name}</span>
             </div>
+            {/*{props.device.imageName ? <img src={dataHandler.getDeviceImageUrl(props.device.imageName)} alt="lol"></img> : null}*/}
             <span>Model: {props.device.model}</span>
             <span>Location: {props.device.spot}</span>
             <span>Device type: {props.device.deviceType}</span>
             <span>Last update: {props.device.updatedAt}</span>
             <DashboardContentButton text="View details"/>
+            <DashboardContentButton action={navigateToUploadImage} text="Upload image"/>
         </div>
     )
 }

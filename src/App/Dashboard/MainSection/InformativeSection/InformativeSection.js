@@ -19,6 +19,8 @@ const InformativeSection = props => {
                 return <DevicesSection/>
             case 'devices/edit-device':
                 return <DevicesSection/>
+            case 'devices/update-image':
+                return <DevicesSection/>
             case 'spaces':
                 return <SpacesSection/>
             case 'spaces/add-space':

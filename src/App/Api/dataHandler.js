@@ -30,12 +30,19 @@ export let dataHandler = {
       const assignDeviceUrl = api.apiUrl + api.assignDeviceToSpace.replace("$deviceId", deviceId).replace("$spaceId", spaceId);
       return await apiPutNoBody(assignDeviceUrl);
     },
+    getDeviceImageUrl: function(imageName) {
+        return api.apiUrl + api.getDeviceImage.replace("$fileName", imageName);
+    },
     addNewDevice: async function(data) {
       return await apiPost(api.apiUrl + api.addNewDevice, data);
     },
     updateDevice: async function (data) {
         const updateDeviceUrl = api.apiUrl + api.updateDevice.replace("$deviceId", data.id);
         return await apiPutWithBody(updateDeviceUrl, data);
+    },
+    uploadDeviceImage: async function (data) {
+      const uploadImageUrl = api.apiUrl + api.addDeviceImage;
+      return await apiPostWithImage(uploadImageUrl, data);
     },
     deleteDevice: async function (deviceId) {
         const deleteDeviceUrl = api.apiUrl + api.deleteDevice.replace("$deviceId", deviceId);
@@ -124,5 +131,18 @@ async function apiPutWithBody(url, payload) {
     });
     if (response.ok) {
         return await response.json();
+    }
+}
+
+async function apiPostWithImage(url, payload) {
+    let response = await fetch(url, {
+        method: 'POST',
+        body: payload
+    });
+    if (response.ok) {
+        const text = await response.text();
+        return text ? JSON.parse(text) : {};
+    } else {
+        throw new Error('Network response was not ok');
     }
 }
