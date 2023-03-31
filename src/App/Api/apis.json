@@ -20,5 +20,6 @@
   "countUserDevices": "api/v1/devices?userId=$userId&count",
   "countUserSpaces": "api/v1/spaces?userId=$userId&count",
   "getActivitiesForUserDevices": "api/v1/activities?userId=$userId",
+  "getActivitiesForSingleDevice": "api/v1/activities?deviceId=$deviceId",
   "getDeviceImage": "static/device-photos/$fileName"
 }

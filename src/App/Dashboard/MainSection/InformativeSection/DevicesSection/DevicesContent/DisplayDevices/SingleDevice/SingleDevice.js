@@ -17,6 +17,10 @@ const SingleDevice = props => {
         window.location.reload();
     }
 
+    const navigateToDetailedPage = () => {
+        navigate('/dashboard/devices/' + props.device.id);
+    }
+
     const navigateToUploadImage = () => {
         navigate(`/dashboard/devices/update-image?deviceId=${props.device.id}`);
     }
@@ -38,7 +42,7 @@ const SingleDevice = props => {
             <span>Location: {props.device.spot}</span>
             <span>Device type: {props.device.deviceType}</span>
             <span>Last update: {props.device.updatedAt}</span>
-            <DashboardContentButton text="View details"/>
+            <DashboardContentButton action={navigateToDetailedPage} text="View details"/>
             <DashboardContentButton action={navigateToUploadImage} text="Upload image"/>
         </div>
     )

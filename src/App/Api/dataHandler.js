@@ -67,6 +67,10 @@ export let dataHandler = {
       const getActivitiesUrl = api.apiUrl + api.getActivitiesForUserDevices.replace("$userId", userId);
       return await apiGet(getActivitiesUrl);
     },
+    getActivitiesForSingleDevice: async function(deviceId) {
+      const getActivitiesUrl = api.apiUrl + api.getActivitiesForSingleDevice.replace("$deviceId", deviceId);
+      return await apiGet(getActivitiesUrl);
+    },
     countUserSpaces: async function (userId) {
         const countUserSpacesUrl = api.apiUrl + api.countUserSpaces.replace("$userId", userId);
         return await apiGet(countUserSpacesUrl);

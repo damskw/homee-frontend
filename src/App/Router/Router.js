@@ -9,6 +9,7 @@ const RouterReact = () => (
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/dashboard/profile" element={<Dashboard/>} />
             <Route path="/dashboard/devices" element={<Dashboard/>} />
+            <Route path="/dashboard/devices/:deviceId" element={<Dashboard/>} />
             <Route path="/dashboard/devices/add-device" element={<Dashboard/>} />
             <Route path="/dashboard/devices/edit-device" element={<Dashboard/>} />
             <Route path="/dashboard/devices/update-image" element={<Dashboard/>} />

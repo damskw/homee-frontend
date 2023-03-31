@@ -12,23 +12,22 @@ const InformativeSection = props => {
     function generateSection() {
         switch (croppedLocation) {
             case 'profile':
-                return <ProfileSection/>
+                return <ProfileSection/>;
             case 'devices':
-                return <DevicesSection/>
             case 'devices/add-device':
-                return <DevicesSection/>
             case 'devices/edit-device':
-                return <DevicesSection/>
             case 'devices/update-image':
-                return <DevicesSection/>
+                return <DevicesSection/>;
             case 'spaces':
-                return <SpacesSection/>
             case 'spaces/add-space':
-                return <SpacesSection/>
             case 'spaces/edit-space':
-                return <SpacesSection/>
+                return <SpacesSection/>;
             default:
-                return <MainPanel/>
+                if (croppedLocation.startsWith('devices/')) {
+                    return <DevicesSection/>;
+                } else {
+                    return <MainPanel/>;
+                }
         }
     }
 
