@@ -7,6 +7,7 @@
   "loginUser": "api/v1/users/login",
   "addNewDevice": "api/v1/devices",
   "updateDevice": "api/v1/devices/$deviceId",
+  "addDeviceImage": "api/v1/devices?image",
   "deleteDevice": "api/v1/devices/$deviceId",
   "assignDeviceToSpace": "api/v1/devices?deviceId=$deviceId&spaceId=$spaceId",
   "getUserDevices": "api/v1/devices?userId=$userId",
@@ -18,5 +19,7 @@
   "deleteSpaceCascade": "api/v1/spaces/$spaceId?cascade=true",
   "countUserDevices": "api/v1/devices?userId=$userId&count",
   "countUserSpaces": "api/v1/spaces?userId=$userId&count",
-  "getActivitiesForUserDevices": "api/v1/activities?userId=$userId"
+  "getActivitiesForUserDevices": "api/v1/activities?userId=$userId",
+  "getActivitiesForSingleDevice": "api/v1/activities?deviceId=$deviceId",
+  "getDeviceImage": "static/device-photos/$fileName"
 }

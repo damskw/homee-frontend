@@ -2,23 +2,32 @@ import './DevicesContent.css'
 import {useLocation} from "react-router-dom";
 import DevicesForm from "./DevicesForm/DevicesForm";
 import DisplayDevices from "./DisplayDevices/DisplayDevices";
+import UpdateDeviceImageForm from "./UpdateDeviceImageForm/UpdateDeviceImageForm";
+import DetailedDevice from "./DetailedDevice/DetailedDevice";
 
 
 const DevicesContent = props => {
 
     const location = useLocation();
-    const croppedLocation = location.pathname.substring('/dashboard/devices'.length + 1);
-    const addSpaceLocation = "add-device";
-    const editSpaceLocation = "edit-device";
+    const croppedLocation = location.pathname.substring('/dashboard/devices'.length);
+    const addDeviceLocation = "/add-device";
+    const editDeviceLocation = "/edit-device";
+    const updateImageLocation = "/update-image";
 
     function displayContent() {
         switch (croppedLocation) {
-            case addSpaceLocation:
+            case addDeviceLocation:
                 return <DevicesForm/>
-            case editSpaceLocation:
+            case editDeviceLocation:
                 return <DevicesForm device={props.device}/>
+            case updateImageLocation:
+                return <UpdateDeviceImageForm device={props.device}/>
             default:
-                return <DisplayDevices/>
+                if (croppedLocation.startsWith('/')) {
+                    return <DetailedDevice/>;
+                } else {
+                    return <DisplayDevices/>;
+                }
         }
     }
 

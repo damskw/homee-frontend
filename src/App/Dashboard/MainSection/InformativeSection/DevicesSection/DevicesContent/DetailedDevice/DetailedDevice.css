@@ -1,0 +1,168 @@
+.detailedDevice {
+    padding: 1em;
+}
+
+.deviceAvatarWrapper {
+    width: 5em;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    line-height: 1;
+    overflow: hidden;
+    user-select: none;
+    transition: all 200ms ease-in-out 0s;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    font-weight: 400;
+    box-shadow: rgba(0, 0, 0, 0.12) 0rem 0.3125rem 0.625rem 0rem;
+    height: 5rem;
+    font-size: 1rem;
+}
+
+.deviceAvatar {
+    width: 100%;
+    text-align: center;
+    object-fit: cover;
+    color: transparent;
+    text-indent: 10000px;
+    height: 110%;
+}
+
+.detailedDeviceHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detailedDeviceHeaderButtons {
+    transition: all 1s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.detailedDeviceHeaderWrapper {
+    display: flex;
+    gap: 1em;
+}
+
+.deviceHeaderInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.deviceHeaderInfo h3 {
+    margin-block-start: 0.7em;
+    margin-block-end: 0;
+}
+
+.detailedDeviceSecond {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 20em;
+    margin-top: 2em;
+}
+
+.detailedDeviceSecond > div {
+    width: 33.33%;
+    padding: 0.3em 0.3em 0.3em 1.5em;
+    background-clip: border-box;
+    border: 0px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.75rem;
+    height: 100%;
+}
+
+.detailedDeviceSecond > div h4 {
+    margin-block-start: 0;
+}
+
+
+.verticalDeviceHr {
+    flex-shrink: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.12);
+    border-left: 0px solid rgba(0, 0, 0, 0.12);
+    border-bottom: none;
+    opacity: 0.25;
+    background-color: transparent;
+    width: 0.0625rem;
+    /*height: 100%;*/
+    margin: 0px 8px 0px -16px;
+    border-right: none;
+    background-image: linear-gradient(rgba(52, 71, 103, 0), rgb(255, 255, 255), rgba(52, 71, 103, 0)) !important;
+}
+
+.horizontalDeviceHr {
+    flex-shrink: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.12);
+    border-right: 0px solid rgba(0, 0, 0, 0.12);
+    border-left: 0px solid rgba(0, 0, 0, 0.12);
+    background-color: transparent;
+    height: 0.0625rem;
+    margin: 1rem 0px;
+    border-bottom: none;
+    opacity: 0.25;
+    background-image: linear-gradient(to right, rgba(52, 71, 103, 0), rgb(255, 255, 255), rgba(52, 71, 103, 0)) !important;
+}
+
+.deviceImageSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 20em;
+}
+
+.deviceProfileImage {
+    max-width: 20em;
+    min-width: 5em;
+    border-radius: 5em;
+    padding-right: 1em;
+}
+
+.deviceDescription {
+    font-weight: 300;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.02857em;
+    opacity: 1;
+    text-transform: none;
+    vertical-align: unset;
+    text-decoration: none;
+}
+
+.deviceDescriptionDetails div {
+    margin-bottom: 0.5em;
+}
+
+.deviceHeaderInfo p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.deviceInfoLabel {
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-right: 1em;
+}
+
+.deviceInfoDetails {
+    font-size: 0.9em;
+}
+
+.deviceActivities h4 {
+    margin-block-end: 2em;
+}
+
+.viewAllButton > button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+

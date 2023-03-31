@@ -11,6 +11,7 @@ const DevicesContentHeader = props => {
         navigate('/dashboard/devices/add-device')
     }
 
+
     return (
         <div className="spacesContentHeader">
             {props.user && <h1>{props.user.name}'s devices</h1>}
