@@ -8,6 +8,7 @@ export let authenticate = {
     },
     logoutUser: function() {
       sessionStorage.clear();
+      window.location.reload();
     },
     getUser: function() {
         const userJson = sessionStorage.getItem("user");

@@ -1,0 +1,54 @@
+.profileForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileForm label {
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.profileForm input {
+    margin-bottom: 1em;
+    min-width: 15em;
+    min-height: 2em;
+    padding: 0.6em;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 0.5em;
+    outline: none;
+    color: white;
+}
+
+.profileForm textarea {
+    margin-bottom: 1em;
+    min-height: 2em;
+    padding: 0.6em;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 0.5em;
+    outline: none;
+    color: white;
+}
+
+.profileFormWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileFormEntry {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileFormEntry label {
+    text-align: left;
+    width: 150%;
+}
+
+.profileFormError {
+    text-align: center;
+    color: red;
+}

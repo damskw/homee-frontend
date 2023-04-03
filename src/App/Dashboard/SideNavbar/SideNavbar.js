@@ -11,6 +11,7 @@ import userProfile from '../../../assets/icons/profile.png'
 import logoutIcon from '../../../assets/icons/logout.png'
 import supportIcon from '../../../assets/icons/support.png'
 import { useNavigate } from "react-router-dom";
+import {authenticate} from "../../Authenticate/authenticate";
 
 
 const SideNavbar = props => {
@@ -50,6 +51,10 @@ const SideNavbar = props => {
         navigate('/dashboard/spaces')
     }
 
+    const onLogoutAction = () => {
+        authenticate.logoutUser();
+    }
+
 
 
     useEffect(() => {
@@ -66,7 +71,7 @@ const SideNavbar = props => {
             {isShrink ? <SideNavbarLink action={navigateToSpaces} image={spacesIcon}/> : <SideNavbarLink action={navigateToSpaces} image={spacesIcon} text="Spaces"/>}
             {isShrink ? <SideNavbarLink action={navigateToDevices} image={devicesIcon}/> : <SideNavbarLink action={navigateToDevices} image={devicesIcon} text="Devices"/>}
             {isShrink ? <SideNavbarLink action={navigateToProfile}  image={userProfile}/> : <SideNavbarLink action={navigateToProfile} image={userProfile} text="My Profile"/>}
-            {isShrink ? <SideNavbarLink image={logoutIcon}/> : <SideNavbarLink image={logoutIcon} text="Logout"/>}
+            {isShrink ? <SideNavbarLink action={onLogoutAction} image={logoutIcon}/> : <SideNavbarLink action={onLogoutAction} image={logoutIcon} text="Logout"/>}
             {isShrink ? <SideNavbarLink image={supportIcon}/> : <SideNavbarLink image={supportIcon} text="Support"/>}
         </nav>
     )

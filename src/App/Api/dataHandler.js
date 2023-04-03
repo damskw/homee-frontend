@@ -4,6 +4,10 @@ export let dataHandler = {
     getUsers: async function () {
         return await apiGet(api.apiUrl + api.getAllUsers);
     },
+    getSingleUser: async function (userId) {
+      const getSingleUserUrl = api.apiUrl + api.getSingleUser.replace("$userId", userId);
+      return await apiGet(getSingleUserUrl);
+    },
     getSingleSpace: async function (spaceId) {
         const getSpaceUrl = api.apiUrl + api.getSingleSpace.replace("$spaceId", spaceId);
         return await apiGet(getSpaceUrl);
@@ -18,6 +22,12 @@ export let dataHandler = {
     },
     createNewUser: async function (data) {
         return await apiPost(api.apiUrl + api.createNewUser, data);
+    },
+    updateUser: async function (data) {
+      return await apiPutWithBody(api.apiUrl + api.updateUser, data);
+    },
+    changeUserPassword: async function (data) {
+      return await apiPutWithBody(api.apiUrl + api.changeUserPassword, data);
     },
     createNewSpace: async function (data) {
         return await apiPost(api.apiUrl + api.createNewSpace, data);

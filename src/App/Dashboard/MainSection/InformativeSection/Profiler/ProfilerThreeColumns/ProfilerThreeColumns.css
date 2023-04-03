@@ -1,0 +1,51 @@
+.profilerThreeColumns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 20em;
+    margin-top: 2em;
+}
+
+.profilerThreeColumns > div {
+    width: 33.33%;
+    padding: 0.3em 0.3em 0.3em 1.5em;
+    background-clip: border-box;
+    border: 0px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.75rem;
+    height: 100%;
+}
+
+.profilerThreeColumns > div h4 {
+    margin-block-start: 0;
+}
+
+.verticalProfilerHr {
+    flex-shrink: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.12);
+    border-left: 0px solid rgba(0, 0, 0, 0.12);
+    border-bottom: none;
+    opacity: 0.25;
+    background-color: transparent;
+    width: 0.0625rem;
+    /*height: 100%;*/
+    margin: 0px 8px 0px -16px;
+    border-right: none;
+    background-image: linear-gradient(rgba(52, 71, 103, 0), rgb(255, 255, 255), rgba(52, 71, 103, 0)) !important;
+}
+
+.horizontalProfilerHr {
+    flex-shrink: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.12);
+    border-right: 0px solid rgba(0, 0, 0, 0.12);
+    border-left: 0px solid rgba(0, 0, 0, 0.12);
+    background-color: transparent;
+    height: 0.0625rem;
+    margin: 1rem 0px;
+    border-bottom: none;
+    opacity: 0.25;
+    background-image: linear-gradient(to right, rgba(52, 71, 103, 0), rgb(255, 255, 255), rgba(52, 71, 103, 0)) !important;
+}
+
+.profilerThirdColumn h4 {
+    margin-block-end: 2em;
+}
