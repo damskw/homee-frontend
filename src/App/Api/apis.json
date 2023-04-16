@@ -1,7 +1,10 @@
 {
   "apiUrl": "http://localhost:8080/",
   "getAllUsers": "api/v1/users/",
+  "getSingleUser": "api/v1/users/$userId",
   "createNewUser": "api/v1/users",
+  "updateUser": "api/v1/users",
+  "changeUserPassword": "api/v1/users?password",
   "createNewSpace": "api/v1/spaces",
   "assignSpaceToUser": "api/v1/spaces?spaceId=$spaceId&userId=$userId",
   "loginUser": "api/v1/users/login",

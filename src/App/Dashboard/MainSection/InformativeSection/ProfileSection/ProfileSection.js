@@ -1,11 +1,12 @@
 import './ProfileSection.css'
+import InformativeSectionWrapper from "../InformativeSectionWrapper/InformativeSectionWrapper";
+import topImage from '../../../../../assets/dashboard/landscape_background.jpg'
+import ProfileContent from "./ProfileContent/ProfileContent";
 
 const ProfileSection = props => {
 
     return (
-        <div className="profileSection">
-            <h1>Profile section</h1>
-        </div>
+        <InformativeSectionWrapper topImage={topImage} content={<ProfileContent/>}/>
     )
 }
 
