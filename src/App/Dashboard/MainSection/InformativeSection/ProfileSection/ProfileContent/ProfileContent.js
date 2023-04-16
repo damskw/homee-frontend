@@ -44,7 +44,7 @@ const ProfileContent = props => {
                                 nameUnder="Your profile" buttonsContent={buttonsContent()}/>
                 {isEditing || isPassword ? <ProfileForm isPassword={isPassword} user={user}/> :
                     <ProfilerThreeColumns
-                        firstColumnName="Test"
+                        firstColumnName="Testt"
                         secondColumnName="Profile Information" secondColumnContent={secondColumnContent()}
                         thirdColumnName="Test"/>
                 }
