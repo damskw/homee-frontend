@@ -1,4 +1,5 @@
 import api from './apis.json'
+import {authenticate} from "../Authenticate/authenticate";
 
 export let dataHandler = {
     getUsers: async function () {
@@ -21,7 +22,7 @@ export let dataHandler = {
       return await apiDelete(deleteSpaceUrl);
     },
     createNewUser: async function (data) {
-        return await apiPost(api.apiUrl + api.createNewUser, data);
+        return await apiLoginRegisterPost(api.apiUrl + api.createNewUser, data);
     },
     updateUser: async function (data) {
       return await apiPutWithBody(api.apiUrl + api.updateUser, data);
@@ -90,14 +91,18 @@ export let dataHandler = {
         return await apiGet(getUserSpacesUrl);
     },
     loginUser: async function (data) {
-        return await apiPost(api.apiUrl + api.loginUser, data);
+        return await apiLoginRegisterPost(api.apiUrl + api.loginUser, data);
     }
 }
 
 
 async function apiGet(url) {
-    let response = await fetch(url, {
+    const token = authenticate.getUser().token;
+    const response = await fetch(url, {
         method: "GET",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
     });
     if (response.ok) {
         return await response.json();
@@ -105,8 +110,12 @@ async function apiGet(url) {
 }
 
 async function apiPutNoBody(url) {
+    const token = authenticate.getUser().token;
     let response = await fetch(url, {
         method: "PUT",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
     });
     if (response.ok) {
         return response;
@@ -114,19 +123,38 @@ async function apiPutNoBody(url) {
 }
 
 async function apiDelete(url) {
+    const token = authenticate.getUser().token;
     let response = await fetch(url, {
         method: "DELETE",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
     });
     if (response.ok) {
         return response;
     }
 }
 
-async function apiPost(url, payload) {
+async function apiLoginRegisterPost(url, payload) {
     let response = await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+    });
+    if (response.ok) {
+        return await response.json();
+    }
+}
+
+async function apiPost(url, payload) {
+    const token = authenticate.getUser().token;
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload),
     });
@@ -136,10 +164,12 @@ async function apiPost(url, payload) {
 }
 
 async function apiPutWithBody(url, payload) {
+    const token = authenticate.getUser().token;
     let response = await fetch(url, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload),
     });
@@ -149,8 +179,13 @@ async function apiPutWithBody(url, payload) {
 }
 
 async function apiPostWithImage(url, payload) {
+    const token = authenticate.getUser().token;
     let response = await fetch(url, {
         method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
         body: payload
     });
     if (response.ok) {

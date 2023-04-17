@@ -1,14 +1,14 @@
 export let authenticate = {
-    loginUser: function(id, username) {
+    loginUser: function(id, token) {
         const user = {
             id: id,
-            name: username
+            token: token
         };
         sessionStorage.setItem("user", JSON.stringify(user))
     },
     logoutUser: function() {
       sessionStorage.clear();
-      window.location.reload();
+      window.location = '/';
     },
     getUser: function() {
         const userJson = sessionStorage.getItem("user");
