@@ -37,6 +37,13 @@ export let dataHandler = {
         const assignSpaceUrl = api.apiUrl + api.assignSpaceToUser.replace("$userId", userId).replace("$spaceId", spaceId);
         return await apiPutNoBody(assignSpaceUrl);
     },
+    unassignedSpaceFromUser: async function (spaceId, userId) {
+        const unassignedSpaceUrl = api.apiUrl + api.unassignedSpaceFromUser.replace("$userId", userId).replace("$spaceId", spaceId);
+        return await apiDelete(unassignedSpaceUrl);
+    },
+    shareSpace: async function (data) {
+      return await apiPutWithBody(api.apiUrl + api.shareSpace, data);
+    },
     assignDeviceToSpace: async function (deviceId, spaceId) {
       const assignDeviceUrl = api.apiUrl + api.assignDeviceToSpace.replace("$deviceId", deviceId).replace("$spaceId", spaceId);
       return await apiPutNoBody(assignDeviceUrl);
@@ -53,7 +60,23 @@ export let dataHandler = {
     },
     uploadDeviceImage: async function (data) {
       const uploadImageUrl = api.apiUrl + api.addDeviceImage;
-      return await apiPostWithImage(uploadImageUrl, data);
+      return await apiPostWithFile(uploadImageUrl, data);
+    },
+    uploadDocument: async function (data) {
+      const uploadDocumentUrl = api.apiUrl + api.uploadDocument;
+      return await apiPostWithFile(uploadDocumentUrl, data)
+    },
+    deleteDocument: async function (documentId) {
+      const deleteDocumentUrl = api.apiUrl + api.deleteDocument.replace("$documentId", documentId);
+      return await apiDelete(deleteDocumentUrl);
+    },
+    downloadDocument: async function (documentId) {
+      const downloadDocumentUrl = api.apiUrl + api.downloadDocument.replace("$documentId", documentId);
+      return await apiDownload(downloadDocumentUrl);
+    },
+    getDocumentsForDevice: async function (deviceId) {
+        const getDocumentsUrl = api.apiUrl + api.getDocumentsForDevice.replace("$deviceId", deviceId);
+        return await apiGet(getDocumentsUrl);
     },
     deleteDevice: async function (deviceId) {
         const deleteDeviceUrl = api.apiUrl + api.deleteDevice.replace("$deviceId", deviceId);
@@ -62,6 +85,10 @@ export let dataHandler = {
     getDevicesForUser: async function (userId) {
         const getUserDevicesUrl = api.apiUrl + api.getUserDevices.replace("$userId", userId);
         return await apiGet(getUserDevicesUrl);
+    },
+    getDevicesForSpace: async function (spaceId) {
+      const getSpaceDevicesUrl = api.apiUrl + api.getSpaceDevices.replace("$spaceId", spaceId);
+      return await apiGet(getSpaceDevicesUrl);
     },
     getSingleDevice: async function(deviceId) {
       const getDeviceUrl = api.apiUrl + api.getSingleDevice.replace("$deviceId", deviceId);
@@ -95,6 +122,29 @@ export let dataHandler = {
     }
 }
 
+async function apiDownload(url) {
+    const token = authenticate.getUser().token;
+    fetch(url, {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/octet-stream'
+        },
+    })
+        .then(response => {
+            const contentDisposition = response.headers.get('Content-Disposition');
+            const filenameMatch = contentDisposition.match(/filename[^;=\n]*=(.*)/);
+            const filename = filenameMatch ? filenameMatch[1].slice(0, -1) : 'temp';
+            return response.blob().then(blob => {
+                const downloadLink = document.createElement('a');
+                downloadLink.setAttribute('href', window.URL.createObjectURL(blob));
+                downloadLink.setAttribute('download', filename);
+                downloadLink.click();
+                window.URL.revokeObjectURL(url);
+            });
+        })
+        .catch(error => console.error(error));
+}
 
 async function apiGet(url) {
     const token = authenticate.getUser().token;
@@ -178,13 +228,12 @@ async function apiPutWithBody(url, payload) {
     }
 }
 
-async function apiPostWithImage(url, payload) {
+async function apiPostWithFile(url, payload) {
     const token = authenticate.getUser().token;
     let response = await fetch(url, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
         },
         body: payload
     });

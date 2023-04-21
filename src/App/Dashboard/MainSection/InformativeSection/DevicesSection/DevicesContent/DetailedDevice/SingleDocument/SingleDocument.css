@@ -1,0 +1,19 @@
+.singleDocument {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+
+.singleDocumentButtons {
+    display: flex;
+    gap: 1em;
+}
+
+.singleDocumentModalYesNo {
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+}

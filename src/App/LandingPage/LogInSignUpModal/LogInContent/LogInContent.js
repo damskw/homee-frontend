@@ -23,7 +23,7 @@ const LogInContent = props => {
             return;
         }
         navigate('/dashboard');
-        authenticate.loginUser(user.id, user.token);
+        authenticate.loginUser(user.id, user.username, user.token);
     }
 
     const contentClasses = `logInContent ${isLoading ? "hidden" : ""}`;

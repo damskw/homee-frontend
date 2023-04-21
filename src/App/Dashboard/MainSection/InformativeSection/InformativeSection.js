@@ -25,6 +25,8 @@ const InformativeSection = props => {
             default:
                 if (croppedLocation.startsWith('devices/')) {
                     return <DevicesSection/>;
+                } else if (croppedLocation.startsWith('spaces/')) {
+                    return <SpacesSection />;
                 } else {
                     return <MainPanel/>;
                 }

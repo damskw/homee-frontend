@@ -3,9 +3,10 @@
 .detailedDeviceHeaderButtons {
     transition: all 1s ease;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-end;
     align-items: flex-end;
+    gap: 1em;
 }
 
 .deviceImageSection {
@@ -62,3 +63,17 @@
     justify-content: center;
 }
 
+.h4noBottom {
+    margin-block-end: 0.5em;
+}
+
+.documentListHeader span {
+    color: slategray;
+}
+
+.documentsList {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}

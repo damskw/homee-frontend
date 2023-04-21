@@ -7,6 +7,8 @@
   "changeUserPassword": "api/v1/users?password",
   "createNewSpace": "api/v1/spaces",
   "assignSpaceToUser": "api/v1/spaces?spaceId=$spaceId&userId=$userId",
+  "unassignedSpaceFromUser": "api/v1/spaces?spaceId=$spaceId&userId=$userId",
+  "shareSpace" : "api/v1/spaces?share",
   "loginUser": "api/v1/users/login",
   "addNewDevice": "api/v1/devices",
   "updateDevice": "api/v1/devices/$deviceId",
@@ -14,6 +16,7 @@
   "deleteDevice": "api/v1/devices/$deviceId",
   "assignDeviceToSpace": "api/v1/devices?deviceId=$deviceId&spaceId=$spaceId",
   "getUserDevices": "api/v1/devices?userId=$userId",
+  "getSpaceDevices": "api/v1/devices?spaceId=$spaceId",
   "getDeviceTypes": "api/v1/devices/types",
   "getSingleDevice": "api/v1/devices/$deviceId",
   "getUserSpaces": "api/v1/spaces?userId=$userId",
@@ -24,5 +27,9 @@
   "countUserSpaces": "api/v1/spaces?userId=$userId&count",
   "getActivitiesForUserDevices": "api/v1/activities?userId=$userId",
   "getActivitiesForSingleDevice": "api/v1/activities?deviceId=$deviceId",
-  "getDeviceImage": "static/device-photos/$fileName"
+  "getDeviceImage": "static/device-photos/$fileName",
+  "uploadDocument": "api/v1/documents",
+  "downloadDocument": "api/v1/documents/$documentId?download",
+  "deleteDocument": "api/v1/documents/$documentId",
+  "getDocumentsForDevice": "api/v1/documents?deviceId=$deviceId"
 }

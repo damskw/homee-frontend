@@ -1,7 +1,8 @@
 export let authenticate = {
-    loginUser: function(id, token) {
+    loginUser: function(id, username, token) {
         const user = {
             id: id,
+            name: username,
             token: token
         };
         sessionStorage.setItem("user", JSON.stringify(user))

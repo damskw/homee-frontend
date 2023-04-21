@@ -11,12 +11,16 @@ import ChangeSpaceForm from "./ChangeSpaceForm/ChangeSpaceForm";
 import ProfilerHeader from "../../../Profiler/ProfilerHeader/ProfilerHeader";
 import Profiler from "../../../Profiler/Profiler";
 import ProfilerThreeColumns from "../../../Profiler/ProfilerThreeColumns/ProfilerThreeColumns";
+import ProfilerFullWide from "../../../Profiler/ProfilerFullWide/ProfilerFullWide";
+import SingleDocument from "./SingleDocument/SingleDocument";
+import HorizontalProfilerHr from "../../../../../Hrs/HorizontalProfilerHr";
 
 const DetailedDevice = (props) => {
     const blueBackground = "linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232))"
     const {deviceId} = useParams();
     const [device, setDevice] = useState(null);
     const [activities, setActivities] = useState([]);
+    const [documents, setDocuments] = useState([]);
     const [spaceChange, setSpaceChange] = useState(false);
     const navigate = useNavigate();
     const activitiesList = activities
@@ -35,6 +39,12 @@ const DetailedDevice = (props) => {
             return null;
         });
 
+    const documentsList = documents.map((d) => {
+        return (
+            <SingleDocument key={d.id} d={d}/>
+        )
+    })
+
     useEffect(() => {
         if (!deviceId) {
             navigate('/dashboard/devices');
@@ -50,13 +60,23 @@ const DetailedDevice = (props) => {
             setActivities(activities);
         }
 
+        async function fetchDocuments() {
+            const documents = await dataHandler.getDocumentsForDevice(deviceId);
+            setDocuments(documents);
+        }
+
         fetchDevice();
         fetchActivities();
+        fetchDocuments();
     }, [deviceId, navigate]);
 
     const onChangeSpaceClick = async () => {
         spaceChange ? setSpaceChange(false) : setSpaceChange(true);
-    }
+    };
+
+    const unUploadDocumentClick = () => {
+        navigate(`/dashboard/devices/upload?deviceId=${device.id}`);
+    };
 
     const profilerContent = () => {
         return (
@@ -68,7 +88,7 @@ const DetailedDevice = (props) => {
                     secondColumnName="Device's Information" secondColumnContent={secondColumnContent()}
                     thirdColumnName="Recent activities" thirdColumnContent={thirdColumnContent()}
                 />
-
+                <ProfilerFullWide content={profilerWideSectionContent()} />
             </div>
         )
     }
@@ -88,7 +108,7 @@ const DetailedDevice = (props) => {
         return (
             <div className="deviceDescriptionDetails">
                 <p>{device && device.about}</p>
-                <hr className="horizontalProfilerHr"></hr>
+                <HorizontalProfilerHr/>
                 <div>
                     <span className="deviceInfoLabel">Model: </span> <span
                     className="deviceInfoDetails">{device && device.model}</span>
@@ -149,10 +169,24 @@ const DetailedDevice = (props) => {
         )
     }
 
+    const profilerWideSectionContent = () => {
+        return (
+            <div className="documentListHeader">
+                <HorizontalProfilerHr/>
+                <h4 className="h4noBottom">Documents</h4>
+                <span>Documents associated with this device</span>
+                <div className="documentsList">
+                    {documentsList}
+                </div>
+            </div>
+        )
+    }
+
     const profilerContentButtons = () => {
         return (
             <div className="detailedDeviceHeaderButtons">
                 <DashboardContentButton action={onChangeSpaceClick} text={spaceChange ? "Cancel" : "Change space"}/>
+                <DashboardContentButton action={unUploadDocumentClick} text={"Upload document"}/>
                 {spaceChange && <ChangeSpaceForm device={device}/>}
             </div>
         )

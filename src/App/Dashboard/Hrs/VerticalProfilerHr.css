@@ -1,0 +1,13 @@
+.verticalProfilerHr {
+    flex-shrink: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.12);
+    border-left: 0px solid rgba(0, 0, 0, 0.12);
+    border-bottom: none;
+    opacity: 0.25;
+    background-color: transparent;
+    width: 0.0625rem;
+    /*height: 100%;*/
+    margin: 0px 8px 0px -16px;
+    border-right: none;
+    background-image: linear-gradient(rgba(52, 71, 103, 0), rgb(255, 255, 255), rgba(52, 71, 103, 0)) !important;
+}

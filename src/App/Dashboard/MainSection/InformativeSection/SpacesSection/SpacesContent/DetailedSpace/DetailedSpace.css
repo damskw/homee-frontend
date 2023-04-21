@@ -1,0 +1,32 @@
+.spanGrey {
+    color: slategray;
+}
+
+.detailedSpaceWide {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.detailedSpaceHeaderButtons {
+    display: flex;
+    gap: 1em;
+}
+
+.detailedSpaceModalContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: 2em 1em 1em;
+}
+
+.detailedSpaceModalContentForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+}
+
+.detailedSpaceInviteSentHeader {
+    color: green;
+}
