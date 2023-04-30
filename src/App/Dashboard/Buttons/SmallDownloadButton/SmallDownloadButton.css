@@ -64,3 +64,25 @@
     color: orangered;
     border-color: orangered;
 }
+
+.buttonGrey {
+    border-color: slategray;
+    color: slategray;
+}
+
+.buttonGrey:hover {
+    color: black;
+    border-color: black;
+}
+
+.buttonGreyWhite {
+    border-color: slategray;
+    color: slategray;
+    transition: 1s ease all;
+}
+
+.buttonGreyWhite:hover {
+    color: white;
+    border-color: white;
+    transition: 1s ease all;
+}

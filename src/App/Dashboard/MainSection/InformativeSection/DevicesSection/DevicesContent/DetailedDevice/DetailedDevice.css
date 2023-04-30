@@ -77,3 +77,15 @@
     flex-direction: column;
     gap: 2em;
 }
+
+.notesListHeader span {
+    color: slategray;
+}
+
+.notesList {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    place-items: flex-start;
+    margin-top: 1em;
+    gap: 3em;
+}

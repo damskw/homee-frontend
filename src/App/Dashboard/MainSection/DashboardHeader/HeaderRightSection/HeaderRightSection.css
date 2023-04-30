@@ -3,10 +3,86 @@
     cursor: pointer;
 }
 
+.bellIcon {
+    margin-top: 0.3em;
+}
+
 .headerRightSection {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 2em;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 4em;
+    right: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(-1em);
+    transition: all 0.2s ease-in-out
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.2s ease-in-out;
+    z-index: 1;
+}
+
+.hide {
+    opacity: 0;
+    transform: translateY(-1em);
+    transition: all 0.2s ease-in-out;
+    z-index: -1;
+}
+
+.dropdownMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.singleNotification {
+    padding: 1em;
+    cursor: pointer;
+    min-width: 10em;
+    border-radius: 0.5em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    box-shadow: 1px 1px 5px 1px #000000;
+}
+
+.singleNotification:hover {
+    background-color: white;
+}
+
+.notificationCount {
+    position: absolute;
+    top: 0rem;
+    right: 1.5rem;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    padding: 0.25rem;
+    font-size: 0.75rem;
+    line-height: 1;
+    min-width: 1em;
+    text-align: center;
+}
+
+.readNotification {
+    background-color: slategray;
+}
+
+.unreadNotification {
+    background-color: lightblue;
+}
+
+.singleNotification span {
+    font-size: 0.8em;
 }

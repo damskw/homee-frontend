@@ -1,10 +1,10 @@
-import './UploadDocumentForm.css'
+import './AddEventForm.css'
 import {useState} from "react";
-import {dataHandler} from "../../../../../../../Api/dataHandler";
 import SmallDownloadButton from "../../../../../../Buttons/SmallDownloadButton/SmallDownloadButton";
+import {dataHandler} from "../../../../../../../Api/dataHandler";
 
 
-const UploadDocumentForm = props => {
+const AddEventForm = props => {
 
     const [selectedFile, setSelectedFile] = useState();
     const [isError, setIsError] = useState(false);
@@ -14,8 +14,7 @@ const UploadDocumentForm = props => {
         const formData = new FormData(e.target);
         formData.append('file', selectedFile);
         formData.append('deviceId', props.d.id);
-        formData.append('documentName', e.target.title.value);
-        const response = await dataHandler.uploadDocument(formData);
+        const response = await dataHandler.uploadDeviceImage(formData);
         if (response.error) {
             setIsError(true);
             return;
@@ -30,14 +29,14 @@ const UploadDocumentForm = props => {
 
     return (
         <div className="updateDeviceImage">
-            <h2>Upload document for your device</h2>
-            <span className="spanGrey">Upload any document you'd like to link it with your device.
-                <br/>All files are accepted but attachment cannot be bigger than 5MB.</span>
+            <h2>Add custom event to your device</h2>
+            <span className="spanGrey">You can add future or past event related to your device.
+                <br/>All events will appear in events history.
+            <br/>If you want you can also set a notification to be informed about planned event.</span>
             {isError ? <h1 className="error">Error - file name contains unaccepted characters or file size is too large.</h1> : null}
             <form className="onDocumentUploadForm" onSubmit={handleSubmit}>
-                <label htmlFor="file" className="custom-file-upload">Click to choose your document</label>
+                <label htmlFor="file" className="custom-file-upload">Click to choose your image</label>
                 <input id="file" type="file" name="file" onChange={changeHandler}/>
-                <input className="fileTitle" name="title" type="text" placeholder="Document's title" />
                 <div>
                     <SmallDownloadButton class="buttonGreyWhite" text="Submit"/>
                 </div>
@@ -47,4 +46,4 @@ const UploadDocumentForm = props => {
 }
 
 
-export default UploadDocumentForm;
+export default AddEventForm;

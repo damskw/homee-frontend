@@ -97,6 +97,9 @@ export let dataHandler = {
     getDeviceTypes: async function() {
         return await apiGet(api.apiUrl + api.getDeviceTypes);
     },
+    getEventTypes: async function() {
+      return await apiGet(api.apiUrl + api.getEventTypes);
+    },
     countUserDevices: async function (userId) {
       const countUserDevicesUrl = api.apiUrl + api.countUserDevices.replace("$userId", userId);
       return await apiGet(countUserDevicesUrl);
@@ -119,6 +122,32 @@ export let dataHandler = {
     },
     loginUser: async function (data) {
         return await apiLoginRegisterPost(api.apiUrl + api.loginUser, data);
+    },
+    createNewDeviceNote: async function (data) {
+        return await apiPost(api.apiUrl + api.createNewDeviceNote, data);
+    },
+    updateDeviceNote: async function (data) {
+      return await apiPutWithBody(api.apiUrl + api.updateDeviceNote, data);
+    },
+    getSingleNote: async function (noteId) {
+        const getSingleNoteUrl = api.apiUrl + api.getSingleNote.replace("$noteId", noteId);
+        return await apiGet(getSingleNoteUrl);
+    },
+    deleteNote: async function (noteId) {
+      const deleteNoteUrl = api.apiUrl + api.deleteNote.replace("$noteId", noteId);
+      return await apiDelete(deleteNoteUrl);
+    },
+    getNotesForDevice: async function (deviceId) {
+        const getNotesForDeviceUrl = api.apiUrl + api.getNotesForDevice.replace("$deviceId", deviceId);
+        return await apiGet(getNotesForDeviceUrl);
+    },
+    getUserNotifications: async function (userId) {
+        const getUserNotificationsUrl = api.apiUrl + api.getUserNotifications.replace("$userId", userId);
+        return await apiGet(getUserNotificationsUrl);
+    },
+    markNotificationAsRead: async function (notificationId) {
+        const markNotificationAsReadUrl = api.apiUrl + api.markNotificationAsRead.replace("$id", notificationId);
+        return await apiPutNoBody(markNotificationAsReadUrl);
     }
 }
 
@@ -236,11 +265,13 @@ async function apiPostWithFile(url, payload) {
             'Authorization': `Bearer ${token}`,
         },
         body: payload
+    }).catch(error => {
+        return { error: true, message: "An error occurred while communicating with the server." };
     });
     if (response.ok) {
         const text = await response.text();
         return text ? JSON.parse(text) : {};
     } else {
-        throw new Error('Network response was not ok');
+        return response;
     }
 }
