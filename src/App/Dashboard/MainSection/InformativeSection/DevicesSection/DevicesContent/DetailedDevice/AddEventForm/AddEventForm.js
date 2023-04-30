@@ -18,7 +18,6 @@ const AddEventForm = props => {
         if (response.error) {
             setIsError(true);
             return;
-            // test
         }
         window.location.reload();
     }
