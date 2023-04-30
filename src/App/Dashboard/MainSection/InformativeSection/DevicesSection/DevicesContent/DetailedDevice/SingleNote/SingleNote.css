@@ -1,0 +1,125 @@
+.singleNoteWrapper {
+    border: none;
+    width: 17em;
+    min-height: 20em;
+    background: white;
+    color: black;
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: 0 1px 10px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.emptyNoteWrapper {
+    background: transparent;
+    border-radius: 0.5em;
+    width: 20em;
+    min-height: 20em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addNewNoteSection {
+    color: dodgerblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    transition: all 0.5s ease;
+}
+
+#addNewNoteIcon {
+    scale: 1.2;
+}
+
+.addNewNoteIconWrapper {
+    scale: 3;
+    text-align: center;
+    border: dashed 1px;
+    border-radius: 2em;
+    padding: 0.2em 0.45em 0.2em 0.4em;
+}
+
+.addNewNoteSection:hover {
+    cursor: pointer;
+}
+
+.addNewNoteSection:hover h4 {
+    transition: all 0.5s ease;
+    color: white;
+}
+
+.addNewNoteSection:hover .addNewNoteIconWrapper {
+    transition: all 0.5s ease;
+    color: white;
+}
+
+.addNewNoteSection .addNewNoteIconWrapper {
+    transition: all 0.5s ease;
+}
+
+.addNewNoteSection h4 {
+    transition: all 0.5s ease;
+}
+
+.hrNote {
+    flex-shrink: 0;
+    border-top: 0px solid rgba(0, 0, 0, 0.12);
+    border-right: 0px solid rgba(0, 0, 0, 0.12);
+    border-left: 0px solid rgba(0, 0, 0, 0.12);
+    background-color: black;
+    height: 0.0625rem;
+    border-bottom: none;
+    opacity: 0.25;
+    width: 80%;
+}
+
+.noteForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.noteForm input:focus, textarea:focus {
+    outline: none;
+    border: none;
+}
+
+.noteTitle {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.noteForm input {
+    border: none;
+}
+
+.noteDescription {
+    min-height: 13em;
+    display: block;
+    font-family: inherit;
+    border: none;
+    resize: none;
+}
+
+.headerGrey {
+    color: slategray;
+}
+
+.noteBottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    justify-content: space-between;
+}
+
+.noteSaveCancelButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

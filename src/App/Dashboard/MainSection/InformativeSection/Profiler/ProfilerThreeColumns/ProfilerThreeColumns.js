@@ -1,5 +1,6 @@
 import './ProfilerThreeColumns.css'
 import React from "react";
+import VerticalProfilerHr from "../../../../Hrs/VerticalProfilerHr";
 
 
 const ProfilerThreeColumns = props => {
@@ -11,12 +12,12 @@ const ProfilerThreeColumns = props => {
                 <h4>{props.firstColumnName}</h4>
                 {props.firstColumnContent}
             </div>
-            <hr className="verticalProfilerHr"></hr>
+            <VerticalProfilerHr/>
             <div className="profilerSecondColumn">
                 <h4>{props.secondColumnName}</h4>
                 {props.secondColumnContent}
             </div>
-            <hr className="verticalProfilerHr"></hr>
+            <VerticalProfilerHr/>
             <div className="profilerThirdColumn">
                 <h4>{props.thirdColumnName}</h4>
                 {props.thirdColumnContent}

@@ -1,0 +1,43 @@
+.onDocumentUploadForm {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    font: inherit;
+}
+
+#file {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid grey;
+    color: grey;
+    border-radius: 0.5em;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: 1s ease all;
+}
+
+.custom-file-upload:hover {
+    border: 1px solid white;
+    color: white;
+    transition: 1s ease all;
+}
+
+.fileTitle {
+    color: white;
+    min-width: 17em;
+    border-radius: 0.5em;
+    outline: none;
+    border: 1px solid slategray;
+    background-color: transparent;
+    padding: 0.6em;
+}
+
+.fileTitle:focus {
+    color: white;
+}

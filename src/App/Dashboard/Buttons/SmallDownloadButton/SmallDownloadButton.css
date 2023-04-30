@@ -1,0 +1,88 @@
+.smallDownloadButton {
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
+    margin: 0px;
+    cursor: pointer;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: 0.02857em;
+    min-width: 64px;
+    border: 1px solid rgb(26, 115, 232);
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    line-height: 1.4;
+    text-align: center;
+    text-transform: uppercase;
+    user-select: none;
+    transition: all 150ms ease-in 0s;
+    min-height: 1.9375rem;
+    padding: 0.375rem 1.125rem;
+    font-size: 0.75rem;
+    background-image: initial;
+    background-position-y: initial;
+    background-repeat: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: transparent;
+    color: rgb(26, 115, 232);
+    background-size: 150% !important;
+    background-position-x: 25% !important;
+}
+
+.smallDownloadButton:hover {
+    background: transparent;
+    color: dodgerblue;
+    border-color: dodgerblue;
+}
+
+.buttonGreen {
+    border-color: green;
+    color: green;
+}
+
+.buttonGreen:hover {
+    border-color: limegreen;
+    color: limegreen;
+}
+
+.buttonRed {
+    border-color: red;
+    color: red;
+}
+
+.buttonRed:hover {
+    color: orangered;
+    border-color: orangered;
+}
+
+.buttonGrey {
+    border-color: slategray;
+    color: slategray;
+}
+
+.buttonGrey:hover {
+    color: black;
+    border-color: black;
+}
+
+.buttonGreyWhite {
+    border-color: slategray;
+    color: slategray;
+    transition: 1s ease all;
+}
+
+.buttonGreyWhite:hover {
+    color: white;
+    border-color: white;
+    transition: 1s ease all;
+}

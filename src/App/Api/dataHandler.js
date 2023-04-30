@@ -1,4 +1,5 @@
 import api from './apis.json'
+import {authenticate} from "../Authenticate/authenticate";
 
 export let dataHandler = {
     getUsers: async function () {
@@ -21,7 +22,7 @@ export let dataHandler = {
       return await apiDelete(deleteSpaceUrl);
     },
     createNewUser: async function (data) {
-        return await apiPost(api.apiUrl + api.createNewUser, data);
+        return await apiLoginRegisterPost(api.apiUrl + api.createNewUser, data);
     },
     updateUser: async function (data) {
       return await apiPutWithBody(api.apiUrl + api.updateUser, data);
@@ -35,6 +36,13 @@ export let dataHandler = {
     assignSpaceToUser: async function (spaceId, userId) {
         const assignSpaceUrl = api.apiUrl + api.assignSpaceToUser.replace("$userId", userId).replace("$spaceId", spaceId);
         return await apiPutNoBody(assignSpaceUrl);
+    },
+    unassignedSpaceFromUser: async function (spaceId, userId) {
+        const unassignedSpaceUrl = api.apiUrl + api.unassignedSpaceFromUser.replace("$userId", userId).replace("$spaceId", spaceId);
+        return await apiDelete(unassignedSpaceUrl);
+    },
+    shareSpace: async function (data) {
+      return await apiPutWithBody(api.apiUrl + api.shareSpace, data);
     },
     assignDeviceToSpace: async function (deviceId, spaceId) {
       const assignDeviceUrl = api.apiUrl + api.assignDeviceToSpace.replace("$deviceId", deviceId).replace("$spaceId", spaceId);
@@ -52,7 +60,23 @@ export let dataHandler = {
     },
     uploadDeviceImage: async function (data) {
       const uploadImageUrl = api.apiUrl + api.addDeviceImage;
-      return await apiPostWithImage(uploadImageUrl, data);
+      return await apiPostWithFile(uploadImageUrl, data);
+    },
+    uploadDocument: async function (data) {
+      const uploadDocumentUrl = api.apiUrl + api.uploadDocument;
+      return await apiPostWithFile(uploadDocumentUrl, data)
+    },
+    deleteDocument: async function (documentId) {
+      const deleteDocumentUrl = api.apiUrl + api.deleteDocument.replace("$documentId", documentId);
+      return await apiDelete(deleteDocumentUrl);
+    },
+    downloadDocument: async function (documentId) {
+      const downloadDocumentUrl = api.apiUrl + api.downloadDocument.replace("$documentId", documentId);
+      return await apiDownload(downloadDocumentUrl);
+    },
+    getDocumentsForDevice: async function (deviceId) {
+        const getDocumentsUrl = api.apiUrl + api.getDocumentsForDevice.replace("$deviceId", deviceId);
+        return await apiGet(getDocumentsUrl);
     },
     deleteDevice: async function (deviceId) {
         const deleteDeviceUrl = api.apiUrl + api.deleteDevice.replace("$deviceId", deviceId);
@@ -62,12 +86,19 @@ export let dataHandler = {
         const getUserDevicesUrl = api.apiUrl + api.getUserDevices.replace("$userId", userId);
         return await apiGet(getUserDevicesUrl);
     },
+    getDevicesForSpace: async function (spaceId) {
+      const getSpaceDevicesUrl = api.apiUrl + api.getSpaceDevices.replace("$spaceId", spaceId);
+      return await apiGet(getSpaceDevicesUrl);
+    },
     getSingleDevice: async function(deviceId) {
       const getDeviceUrl = api.apiUrl + api.getSingleDevice.replace("$deviceId", deviceId);
       return await apiGet(getDeviceUrl);
     },
     getDeviceTypes: async function() {
         return await apiGet(api.apiUrl + api.getDeviceTypes);
+    },
+    getEventTypes: async function() {
+      return await apiGet(api.apiUrl + api.getEventTypes);
     },
     countUserDevices: async function (userId) {
       const countUserDevicesUrl = api.apiUrl + api.countUserDevices.replace("$userId", userId);
@@ -90,14 +121,67 @@ export let dataHandler = {
         return await apiGet(getUserSpacesUrl);
     },
     loginUser: async function (data) {
-        return await apiPost(api.apiUrl + api.loginUser, data);
+        return await apiLoginRegisterPost(api.apiUrl + api.loginUser, data);
+    },
+    createNewDeviceNote: async function (data) {
+        return await apiPost(api.apiUrl + api.createNewDeviceNote, data);
+    },
+    updateDeviceNote: async function (data) {
+      return await apiPutWithBody(api.apiUrl + api.updateDeviceNote, data);
+    },
+    getSingleNote: async function (noteId) {
+        const getSingleNoteUrl = api.apiUrl + api.getSingleNote.replace("$noteId", noteId);
+        return await apiGet(getSingleNoteUrl);
+    },
+    deleteNote: async function (noteId) {
+      const deleteNoteUrl = api.apiUrl + api.deleteNote.replace("$noteId", noteId);
+      return await apiDelete(deleteNoteUrl);
+    },
+    getNotesForDevice: async function (deviceId) {
+        const getNotesForDeviceUrl = api.apiUrl + api.getNotesForDevice.replace("$deviceId", deviceId);
+        return await apiGet(getNotesForDeviceUrl);
+    },
+    getUserNotifications: async function (userId) {
+        const getUserNotificationsUrl = api.apiUrl + api.getUserNotifications.replace("$userId", userId);
+        return await apiGet(getUserNotificationsUrl);
+    },
+    markNotificationAsRead: async function (notificationId) {
+        const markNotificationAsReadUrl = api.apiUrl + api.markNotificationAsRead.replace("$id", notificationId);
+        return await apiPutNoBody(markNotificationAsReadUrl);
     }
 }
 
+async function apiDownload(url) {
+    const token = authenticate.getUser().token;
+    fetch(url, {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/octet-stream'
+        },
+    })
+        .then(response => {
+            const contentDisposition = response.headers.get('Content-Disposition');
+            const filenameMatch = contentDisposition.match(/filename[^;=\n]*=(.*)/);
+            const filename = filenameMatch ? filenameMatch[1].slice(0, -1) : 'temp';
+            return response.blob().then(blob => {
+                const downloadLink = document.createElement('a');
+                downloadLink.setAttribute('href', window.URL.createObjectURL(blob));
+                downloadLink.setAttribute('download', filename);
+                downloadLink.click();
+                window.URL.revokeObjectURL(url);
+            });
+        })
+        .catch(error => console.error(error));
+}
 
 async function apiGet(url) {
-    let response = await fetch(url, {
+    const token = authenticate.getUser().token;
+    const response = await fetch(url, {
         method: "GET",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
     });
     if (response.ok) {
         return await response.json();
@@ -105,8 +189,12 @@ async function apiGet(url) {
 }
 
 async function apiPutNoBody(url) {
+    const token = authenticate.getUser().token;
     let response = await fetch(url, {
         method: "PUT",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
     });
     if (response.ok) {
         return response;
@@ -114,19 +202,38 @@ async function apiPutNoBody(url) {
 }
 
 async function apiDelete(url) {
+    const token = authenticate.getUser().token;
     let response = await fetch(url, {
         method: "DELETE",
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
     });
     if (response.ok) {
         return response;
     }
 }
 
-async function apiPost(url, payload) {
+async function apiLoginRegisterPost(url, payload) {
     let response = await fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+    });
+    if (response.ok) {
+        return await response.json();
+    }
+}
+
+async function apiPost(url, payload) {
+    const token = authenticate.getUser().token;
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload),
     });
@@ -136,10 +243,12 @@ async function apiPost(url, payload) {
 }
 
 async function apiPutWithBody(url, payload) {
+    const token = authenticate.getUser().token;
     let response = await fetch(url, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload),
     });
@@ -148,15 +257,21 @@ async function apiPutWithBody(url, payload) {
     }
 }
 
-async function apiPostWithImage(url, payload) {
+async function apiPostWithFile(url, payload) {
+    const token = authenticate.getUser().token;
     let response = await fetch(url, {
         method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        },
         body: payload
+    }).catch(error => {
+        return { error: true, message: "An error occurred while communicating with the server." };
     });
     if (response.ok) {
         const text = await response.text();
         return text ? JSON.parse(text) : {};
     } else {
-        throw new Error('Network response was not ok');
+        return response;
     }
 }

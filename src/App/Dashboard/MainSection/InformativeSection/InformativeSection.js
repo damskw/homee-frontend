@@ -16,7 +16,6 @@ const InformativeSection = props => {
             case 'devices':
             case 'devices/add-device':
             case 'devices/edit-device':
-            case 'devices/update-image':
                 return <DevicesSection/>;
             case 'spaces':
             case 'spaces/add-space':
@@ -25,6 +24,8 @@ const InformativeSection = props => {
             default:
                 if (croppedLocation.startsWith('devices/')) {
                     return <DevicesSection/>;
+                } else if (croppedLocation.startsWith('spaces/')) {
+                    return <SpacesSection />;
                 } else {
                     return <MainPanel/>;
                 }

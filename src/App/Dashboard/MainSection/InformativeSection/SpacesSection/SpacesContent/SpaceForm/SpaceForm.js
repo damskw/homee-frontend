@@ -28,8 +28,8 @@ const SpaceForm = props => {
         e.preventDefault();
         const user = authenticate.getUser();
         const data = Object.fromEntries(new FormData(e.target).entries());
-        const newSpace = await dataHandler.createNewSpace(data);
-        await dataHandler.assignSpaceToUser(newSpace.id, user.id);
+        data.userId = user.id;
+        await dataHandler.createNewSpace(data);
         navigate('/dashboard/spaces')
     }
 
