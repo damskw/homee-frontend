@@ -91,7 +91,7 @@ const SingleSpace = props => {
         const user = authenticate.getUser();
         setUser(user);
         setIsOwner(props.space.ownerId === user.id);
-    }, [])
+    }, [props.space.ownerId])
 
 
     return (
