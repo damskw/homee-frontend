@@ -5,7 +5,7 @@ import LogInContent from "./LogInContent/LogInContent";
 import ModalButton from "../Buttons/ModalButton/ModalButton";
 
 const LogInSignUpModal = props => {
-    const [isSignUp, setIsSignUp] = useState(true);
+    const [isSignUp, setIsSignUp] = useState(props.isSignUp);
 
     return (
         <div className="modal">

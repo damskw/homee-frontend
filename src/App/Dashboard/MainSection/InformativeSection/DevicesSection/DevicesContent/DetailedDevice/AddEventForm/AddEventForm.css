@@ -1,0 +1,41 @@
+.eventTypesSelect {
+    margin-bottom: 1em;
+    width: inherit;
+    min-height: 1em;
+    min-width: 18em;
+    padding: 0.5em;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 0.5em;
+    outline: none;
+    color: white;
+}
+
+.eventOption {
+    margin-bottom: 1em;
+    width: 100%;
+    min-height: 1em;
+    background-color: #242233;
+    border: 1px solid white;
+    border-radius: 0.5em;
+    outline: none;
+    color: white;
+    padding: 1em;
+    text-indent: 5px;
+}
+
+.eventForm {
+    gap: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#notificationCheckBox {
+    margin-top: 0px;
+}
+
+.dateField {
+    font-family: inherit;
+}

@@ -19,6 +19,7 @@ const MuiBoxWide = props => {
                     {/*<hr className="muiBoxWideHr"/>*/}
                     <div className="muiBoxWideBottom">
                         {props.content}
+                        {props.bottom}
                     </div>
                 </div>
             </div>
