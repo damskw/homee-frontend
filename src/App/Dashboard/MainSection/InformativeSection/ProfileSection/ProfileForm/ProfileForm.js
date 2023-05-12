@@ -10,9 +10,10 @@ const ProfileForm = props => {
     async function onEditProfileSubmitAction(e) {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(e.target).entries());
+        console.log(data);
         data.id = props.user.id;
-        await dataHandler.updateUser(data);
-        window.location.reload();
+        // await dataHandler.updateUser(data);
+        // window.location.reload();
     }
 
     async function onChangePasswordSubmitAction(e) {

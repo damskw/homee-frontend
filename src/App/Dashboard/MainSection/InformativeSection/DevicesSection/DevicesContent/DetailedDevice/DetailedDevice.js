@@ -1,5 +1,5 @@
 import './DetailedDevice.css';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import {dataHandler} from "../../../../../../Api/dataHandler";
@@ -19,15 +19,19 @@ import UploadDocumentForm from "../DisplayDevices/UploadDocumentForm/UploadDocum
 import PropsContentModal from "../../../../../Modals/PropsContentModal";
 import UpdateDeviceImageForm from "../UpdateDeviceImageForm/UpdateDeviceImageForm";
 import AddEventForm from "./AddEventForm/AddEventForm";
+import EventTable from "./EventTable/EventTable";
 
 const DetailedDevice = (props) => {
-    const blueBackground = "linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232))"
+    const blueBackground = "linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232))";
+    const yellowBackground = "linear-gradient(195deg, rgb(235 255 122), rgb(245 203 49))";
     const {deviceId} = useParams();
     const [device, setDevice] = useState(null);
     const [activities, setActivities] = useState([]);
     const [documents, setDocuments] = useState([]);
     const [notesList, setNotesList] = useState([]);
     const [spaceChange, setSpaceChange] = useState(false);
+    const [pastEvents, setPastEvents] = useState([]);
+    const [futureEvents, setFutureEvents] = useState([]);
     const [isUpload, setIsUpload] = useState(false);
     const [isImageChange, setIsImageChange] = useState(false);
     const [isEvent, setIsEvent] = useState(false);
@@ -44,6 +48,15 @@ const DetailedDevice = (props) => {
                         <br/>
                     </React.Fragment>
                 );
+            } else if (a.activityType === "IMPORTANT") {
+                return (
+                    <React.Fragment key={a.id}>
+                        <SingleActivity date={a.date} background={yellowBackground} description={a.description}
+                                        deviceName={a.deviceName}/>
+                        <br/>
+                        <br/>
+                    </React.Fragment>
+                );
             }
             return null;
         });
@@ -53,6 +66,10 @@ const DetailedDevice = (props) => {
             <SingleDocument key={d.id} d={d}/>
         )
     })
+
+    const onNoteDelete = useCallback((noteId) => {
+        setNotesList(notesList => notesList.filter(note => note.props.n.id !== noteId));
+    }, []);
 
     useEffect(() => {
         if (!deviceId) {
@@ -74,26 +91,39 @@ const DetailedDevice = (props) => {
             setDocuments(documents);
         }
 
+        async function getPastEvents() {
+            const pastEvents = await dataHandler.getDevicePastEvents(deviceId);
+            setPastEvents(pastEvents);
+        }
+
+        async function getFutureEvents() {
+            const futureEvents = await dataHandler.getDeviceFutureEvents(deviceId);
+            setFutureEvents(futureEvents);
+        }
+
 
         async function fetchNotes() {
             const notes = await dataHandler.getNotesForDevice(deviceId);
             const notesList = notes.map((n) => {
                 return (
-                    <SingleNote onDelete={onNoteDelete} key={n.id} n={n} />
+                    <SingleNote onDelete={onNoteDelete} key={n.id} n={n}/>
                 )
             });
             setNotesList(notesList);
         }
 
-        const onNoteDelete =  (noteId) => {
-            setNotesList(notesList.filter((note => note.props.n.id !== noteId)));
-        };
+        async function getData() {
+            await fetchDevice();
+            await fetchActivities();
+            await fetchDocuments();
+            await fetchNotes();
+            await getPastEvents();
+            await getFutureEvents();
+        }
 
-        fetchDevice();
-        fetchActivities();
-        fetchDocuments();
-        fetchNotes();
-    }, [deviceId, navigate, notesList]);
+        getData();
+    }, [deviceId, navigate, onNoteDelete]);
+
 
     const onChangeSpaceClick = async () => {
         spaceChange ? setSpaceChange(false) : setSpaceChange(true);
@@ -102,7 +132,7 @@ const DetailedDevice = (props) => {
     const onDocumentUploadContent = () => {
         return (
             <>
-                <UploadDocumentForm d={device} />
+                <UploadDocumentForm d={device}/>
             </>
         )
     }
@@ -110,7 +140,7 @@ const DetailedDevice = (props) => {
     const onImageChangeContent = () => {
         return (
             <>
-                <UpdateDeviceImageForm d={device} />
+                <UpdateDeviceImageForm d={device}/>
             </>
         )
     }
@@ -118,7 +148,7 @@ const DetailedDevice = (props) => {
     const onAddEventContent = () => {
         return (
             <>
-                <AddEventForm d={device} />
+                <AddEventForm d={device}/>
             </>
         )
     }
@@ -135,9 +165,23 @@ const DetailedDevice = (props) => {
                 />
                 <ProfilerFullWide content={profilerWideSectionContent()}/>
                 <ProfilerFullWide content={profilerNotesContent()}/>
-                {isUpload ? <PropsContentModal onClose={() => setIsUpload(false)} content={onDocumentUploadContent()}/> : null}
-                {isImageChange ? <PropsContentModal onClose={() => setIsImageChange(false)} content={onImageChangeContent()}/> : null}
+                <ProfilerFullWide content={profilerEventsContent()}/>
+                {isUpload ?
+                    <PropsContentModal onClose={() => setIsUpload(false)} content={onDocumentUploadContent()}/> : null}
+                {isImageChange ? <PropsContentModal onClose={() => setIsImageChange(false)}
+                                                    content={onImageChangeContent()}/> : null}
                 {isEvent ? <PropsContentModal onClose={() => setIsEvent(false)} content={onAddEventContent()}/> : null}
+            </div>
+        )
+    }
+
+    const profilerEventsContent = () => {
+        return (
+            <div className="notesListHeader">
+                <HorizontalProfilerHr/>
+                <h4 className="h4noBottom">Events</h4>
+                <span>Events for this device</span>
+                <EventTable pastEvents={pastEvents} futureEvents={futureEvents} setFutureEvents={setFutureEvents} setPastEvents={setPastEvents}/>
             </div>
         )
     }
@@ -230,11 +274,6 @@ const DetailedDevice = (props) => {
             </div>
         )
     }
-
-
-    const onNoteDelete =  (noteId) => {
-        setNotesList(notesList.filter((note => note.props.n.id !== noteId)));
-    };
 
     const onEmptyNoteClick = async () => {
         const note = {

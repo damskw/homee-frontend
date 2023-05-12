@@ -11,6 +11,7 @@ const RightSection = props => {
 
     const [isModal, setIsModal] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(false);
     const navigate = useNavigate();
 
 
@@ -26,7 +27,7 @@ const RightSection = props => {
     function displayButtons() {
         if (!isLoggedIn) {
             return (
-                <MainColorButton onClick={() => setIsModal(true)} text="Sign Up"></MainColorButton>
+                <MainColorButton onClick={() => {setIsModal(true); setIsSignUp(true)}} text="Sign Up"></MainColorButton>
             )
         }
         return (
@@ -37,9 +38,9 @@ const RightSection = props => {
 
     return (
         <div className="rightSection">
-            <NavLinks onAction={() => setIsModal(true)}/>
+            <NavLinks onAction={() => {setIsModal(true); setIsSignUp(false)}}/>
             {displayButtons()}
-            {isModal ? <LogInSignUpModal onClose={() => setIsModal(false)}/> : null}
+            {isModal ? <LogInSignUpModal isSignUp={isSignUp} onClose={() => setIsModal(false)}/> : null}
         </div>
     )
 }

@@ -24,6 +24,11 @@ export let dataHandler = {
     createNewUser: async function (data) {
         return await apiLoginRegisterPost(api.apiUrl + api.createNewUser, data);
     },
+    activateUserAccount: async function (userId, activationCode) {
+        const activateUrl = api.apiUrl + api.activateUserAccount.replace("$userId", userId).replace("$code", activationCode);
+        return await apiActivate(activateUrl);
+    }
+    ,
     updateUser: async function (data) {
       return await apiPutWithBody(api.apiUrl + api.updateUser, data);
     },
@@ -86,6 +91,10 @@ export let dataHandler = {
         const getUserDevicesUrl = api.apiUrl + api.getUserDevices.replace("$userId", userId);
         return await apiGet(getUserDevicesUrl);
     },
+    searchForUserDevices: async function (userId, search) {
+      const searchForUserDevicesUrl = api.apiUrl + api.searchForUserDevices.replace("$userId", userId).replace("$search", search);
+      return await apiGet(searchForUserDevicesUrl);
+    },
     getDevicesForSpace: async function (spaceId) {
       const getSpaceDevicesUrl = api.apiUrl + api.getSpaceDevices.replace("$spaceId", spaceId);
       return await apiGet(getSpaceDevicesUrl);
@@ -99,6 +108,18 @@ export let dataHandler = {
     },
     getEventTypes: async function() {
       return await apiGet(api.apiUrl + api.getEventTypes);
+    },
+    deleteSingleEvent: async function(eventId) {
+      return await apiDelete(api.apiUrl + api.deleteSingleEvent.replace("$eventId", eventId));
+    },
+    getDevicePastEvents: async function(deviceId) {
+      return await apiGet(api.apiUrl + api.getDevicePastEvents.replace("$deviceId", deviceId));
+    },
+    getDeviceFutureEvents: async function(deviceId) {
+        return await apiGet(api.apiUrl + api.getDeviceFutureEvents.replace("$deviceId", deviceId));
+    },
+    addNewEvent: async function(data) {
+      return await apiPost(api.apiUrl + api.addNewEvent, data);
     },
     countUserDevices: async function (userId) {
       const countUserDevicesUrl = api.apiUrl + api.countUserDevices.replace("$userId", userId);
@@ -224,6 +245,15 @@ async function apiLoginRegisterPost(url, payload) {
     });
     if (response.ok) {
         return await response.json();
+    }
+}
+
+async function apiActivate(url) {
+    let response = await fetch(url, {
+        method: 'GET',
+    });
+    if (response.ok) {
+        return response;
     }
 }
 

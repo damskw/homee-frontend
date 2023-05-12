@@ -1,0 +1,21 @@
+.eventTableWrapper {
+
+}
+
+
+.eventTable {
+    font-family: inherit;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.eventTable td, th {
+    text-align: center;
+    padding: 1em;
+    border: none;
+}
+
+.eventTable tr:nth-child(even) {
+    background-color: slategray;
+    border-radius: 1em;
+}

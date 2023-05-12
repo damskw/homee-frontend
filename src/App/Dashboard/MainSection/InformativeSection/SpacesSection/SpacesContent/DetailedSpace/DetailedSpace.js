@@ -48,7 +48,7 @@ const DetailedSpace = props => {
         fetchSpace();
         fetchDevices();
         const user = authenticate.getUser();
-    }, [])
+    }, [navigate, spaceId])
 
     const addNewDeviceHandler = () => {
         navigate('/dashboard/devices/add-device');
@@ -112,7 +112,7 @@ const DetailedSpace = props => {
     const modalContent = () => {
         return (
             <div className="detailedSpaceModalContent">
-                <h4>Please enter e-mail of an user you wish to invite.</h4>
+                <h4>Please enter valid e-mail of a user you wish to invite.</h4>
                 <span className="spanGrey">
                     If user with provided e-mail exists one will receive invitation to share space.
                     <br/>
