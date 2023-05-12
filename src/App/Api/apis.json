@@ -1,5 +1,5 @@
 {
-  "apiUrl": "http://localhost:8080/",
+  "apiUrl": "https://homee-backend-production.up.railway.app/",
   "getAllUsers": "api/v1/users/",
   "getSingleUser": "api/v1/users/$userId",
   "createNewUser": "api/v1/users/register",
