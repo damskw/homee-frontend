@@ -26,35 +26,43 @@ const EventTable = props => {
     return (
         <div className="eventTableWrapper">
             <h2>Future events</h2>
-            <table className="eventTable">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Notification</th>
-                    <th>Notification time</th>
-                    <th>Scheduled at</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {futureEvents}
-                </tbody>
-            </table>
+            {futureEvents.length >= 1 ? (
+                <table className="eventTable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Notification</th>
+                        <th>Notification time</th>
+                        <th>Scheduled at</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {futureEvents}
+                    </tbody>
+                </table>
+            ) : (
+                <span>You don't have any future events.</span>
+            )}
             <h2>Past events</h2>
-            <table className="eventTable">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Notification</th>
-                    <th>Notification time</th>
-                    <th>Scheduled at</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {pastEvents}
-                </tbody>
-            </table>
+            {pastEvents.length >= 1 ? (
+                <table className="eventTable">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Notification</th>
+                        <th>Notification time</th>
+                        <th>Scheduled at</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {pastEvents}
+                    </tbody>
+                </table>
+            ): (
+                <span>You don't have any past events.</span>
+            )}
         </div>
     );
 };

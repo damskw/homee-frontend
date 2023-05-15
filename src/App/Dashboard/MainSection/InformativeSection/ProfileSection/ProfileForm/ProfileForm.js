@@ -2,6 +2,7 @@ import './ProfileForm.css'
 import DashboardContentButton from "../../../../Buttons/DashboardContentButton/DashboardContentButton";
 import {dataHandler} from "../../../../../Api/dataHandler";
 import {useState} from "react";
+import {authenticate} from "../../../../../Authenticate/authenticate";
 
 const ProfileForm = props => {
 
@@ -10,10 +11,11 @@ const ProfileForm = props => {
     async function onEditProfileSubmitAction(e) {
         e.preventDefault();
         const data = Object.fromEntries(new FormData(e.target).entries());
-        console.log(data);
         data.id = props.user.id;
-        // await dataHandler.updateUser(data);
-        // window.location.reload();
+        const currentUser = authenticate.getUser();
+        const updatedUser = await dataHandler.updateUser(data);
+        authenticate.loginUser(currentUser.id, updatedUser.username, currentUser.token);
+        window.location.reload();
     }
 
     async function onChangePasswordSubmitAction(e) {

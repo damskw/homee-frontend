@@ -5,6 +5,13 @@ import CheckedIcon from "../../Icons/CheckedIcon";
 
 const ContentArea = props => {
 
+    const onClickScrollToFeatures = () => {
+        const featuresDiv = document.querySelector(".secondSection");
+        if (featuresDiv) {
+            featuresDiv.scrollIntoView({behavior: "smooth"});
+        }
+    }
+
     return (
         <section>
             <div>
@@ -16,7 +23,7 @@ const ContentArea = props => {
                     essentials in a cloud.</p>
             </div>
             <div>
-                <MainColorButton text="Learn more"/>
+                <MainColorButton onClick={onClickScrollToFeatures} text="Learn more"/>
             </div>
             <div className="infoSection">
                 <div className="singleIcon">
