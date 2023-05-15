@@ -40,9 +40,9 @@ const SingleNote = props => {
         return (
             <div className="singleNoteWrapper">
                 <form onSubmit={(e) => handleNoteSubmit(e)} className="noteForm">
-                    <input onChange={() => setIsEditing(true)} name="title" className="noteTitle" type="text"
+                    <input onFocus={() => setIsEditing(true)} name="title" className="noteTitle" type="text"
                            placeholder="Note title" defaultValue={props.n.title}></input>
-                    <textarea onChange={() => setIsEditing(true)} name="description" className="noteDescription" type="text"
+                    <textarea onFocus={() => setIsEditing(true)} name="description" className="noteDescription" type="text"
                            placeholder="Note description" defaultValue={props.n.description}></textarea>
                     {isEditing ? (
                         <div className="noteSaveCancelButtons">

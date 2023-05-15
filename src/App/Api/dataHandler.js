@@ -35,6 +35,13 @@ export let dataHandler = {
     changeUserPassword: async function (data) {
       return await apiPutWithBody(api.apiUrl + api.changeUserPassword, data);
     },
+    requestPasswordChange: async function (email) {
+        const passwordChangeUrl = api.apiUrl + api.requestPasswordChange.replace("$email", email);
+        return await apiActivate(passwordChangeUrl);
+    },
+    changePasswordLostPassword: async function (data) {
+        return await apiPostNoToken(api.apiUrl + api.changePasswordLostPassword, data);
+    },
     createNewSpace: async function (data) {
         return await apiPost(api.apiUrl + api.createNewSpace, data);
     },
@@ -125,6 +132,14 @@ export let dataHandler = {
       const countUserDevicesUrl = api.apiUrl + api.countUserDevices.replace("$userId", userId);
       return await apiGet(countUserDevicesUrl);
     },
+    countUserEventNotifications: async function (userId) {
+        const countEventsUrl = api.apiUrl + api.countUserEventNotifications.replace("$userId", userId);
+        return await apiGet(countEventsUrl);
+    },
+    countUserDocuments: async function (userId) {
+      const countDocumentsUrl = api.apiUrl + api.countUserDocuments.replace("$userId", userId);
+      return await apiGet(countDocumentsUrl);
+    },
     getActivitiesForUserDevices: async function(userId) {
       const getActivitiesUrl = api.apiUrl + api.getActivitiesForUserDevices.replace("$userId", userId);
       return await apiGet(getActivitiesUrl);
@@ -169,6 +184,10 @@ export let dataHandler = {
     markNotificationAsRead: async function (notificationId) {
         const markNotificationAsReadUrl = api.apiUrl + api.markNotificationAsRead.replace("$id", notificationId);
         return await apiPutNoBody(markNotificationAsReadUrl);
+    },
+    deleteNotification: async function (notificationId) {
+        const deleteNotificationUrl = api.apiUrl + api.deleteNotification.replace("$id", notificationId);
+        return await apiDelete(deleteNotificationUrl);
     }
 }
 
@@ -269,6 +288,19 @@ async function apiPost(url, payload) {
     });
     if (response.ok) {
         return await response.json();
+    }
+}
+
+async function apiPostNoToken(url, payload) {
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+    });
+    if (response.ok) {
+        return response;
     }
 }
 

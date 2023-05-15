@@ -77,13 +77,32 @@ const SignUpContent = props => {
         )
     }
 
+    const activationContent = () => {
+        return (
+            <>
+                <h2>Activation code has been sent to your email</h2>
+                {activateForm()}
+            </>
+        )
+    }
+
+    const registerContent = () => {
+        return (
+            <>
+                <h2>Sign Up as new user</h2>
+                {signUpForm()}
+                <br/>
+                <span className="clickable" onClick={props.onSpan}>Already have an account? Log in here.</span>
+            </>
+        )
+    }
+
     return (
         <div>
             {isLoading ? <Spinner/> : null}
             <div className={contentClasses}>
                 {isError ? <ErrorModal text="Incorrect data."/> : null}
-                {isRegistered ? <h2>Activation code has been sent to your email</h2> : <h2>Sign Up as new user</h2>}
-                {isRegistered ? activateForm() : signUpForm()}
+                {isRegistered ? activationContent() : registerContent()}
             </div>
         </div>
     )

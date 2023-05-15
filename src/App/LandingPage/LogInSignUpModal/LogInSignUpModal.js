@@ -13,7 +13,7 @@ const LogInSignUpModal = props => {
                 <ModalButton onClick={() => setIsSignUp(false)} text="Log In"/>
                 <ModalButton onClick={() => setIsSignUp(true)} text="Sign Up"/>
                 <span onClick={props.onClose} className="close">&times;</span>
-                {isSignUp ? <SignUpContent/> : <LogInContent/>}
+                {isSignUp ? <SignUpContent onSpan={() => setIsSignUp(false)}/> : <LogInContent onSpan={() => setIsSignUp(true)}/>}
             </div>
         </div>
     )
