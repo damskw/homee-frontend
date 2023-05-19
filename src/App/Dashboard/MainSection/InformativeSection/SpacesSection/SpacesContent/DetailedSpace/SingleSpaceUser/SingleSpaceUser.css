@@ -1,0 +1,15 @@
+.singleSpaceUser {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5em;
+}
+
+.singleSpaceUserSideIcons {
+    display: flex;
+    gap: 1em;
+}
+
+.singleSpaceUserSideIcons > *:hover {
+    cursor: pointer;
+    color: slategrey;
+}

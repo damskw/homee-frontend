@@ -16,6 +16,7 @@ const RouterReact = () => (
             <Route path="/dashboard/spaces/:spaceId" element={<Dashboard/>} />
             <Route path="/dashboard/spaces/add-space" element={<Dashboard/>} />
             <Route path="/dashboard/spaces/edit-space" element={<Dashboard/>} />
+            <Route path="/dashboard/tasks" element={<Dashboard/>} />
             <Route path="*" element={<LandingPage />} />
         </Routes>
     </Router>

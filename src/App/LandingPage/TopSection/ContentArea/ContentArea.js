@@ -15,10 +15,10 @@ const ContentArea = props => {
     return (
         <section>
             <div>
-                <h2>The easiest way to manage your home devices.</h2>
+                <h2>The easiest way to manage your home assets.</h2>
             </div>
             <div>
-                <p>Homee gives you opportunity to store and manage all your home devices
+                <p>Homee gives you opportunity to store and manage all your home assets
                     in real time. Keep your owner manuals, warranties and
                     essentials in a cloud.</p>
             </div>

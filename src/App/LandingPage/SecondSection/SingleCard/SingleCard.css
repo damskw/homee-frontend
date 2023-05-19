@@ -5,8 +5,14 @@
     max-width: 14em;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+}
+
+.singleCardTop {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .singleCard img {

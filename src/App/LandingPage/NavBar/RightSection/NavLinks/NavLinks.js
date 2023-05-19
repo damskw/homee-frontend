@@ -53,9 +53,9 @@ const NavLinks = props => {
     return (
         <nav>
             <ul className="navLinks">
-                <SingleNavLink action={onClickScrollToFeatures} href="localhost://3000" text="Features"/>
-                <SingleNavLink action={onClickScrollToHowItLooks} href="localhost://3000" text="How it looks"/>
-                <SingleNavLink action={onClickScrollToAbout} href="localhost://3000" text="About"/>
+                <SingleNavLink action={() => onClickScrollToFeatures()} text="Features"/>
+                <SingleNavLink action={() => onClickScrollToHowItLooks()} text="How it looks"/>
+                <SingleNavLink action={() => onClickScrollToAbout()} text="About"/>
                 <SingleNavLink href="localhost://3000" text="FAQ"/>
                 |
                 {displayLogInLogOut(props)}

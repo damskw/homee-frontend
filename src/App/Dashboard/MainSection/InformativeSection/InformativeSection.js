@@ -4,6 +4,7 @@ import ProfileSection from "./ProfileSection/ProfileSection";
 import DevicesSection from "./DevicesSection/DevicesSection";
 import SpacesSection from "./SpacesSection/SpacesSection";
 import MainPanel from "./MainPanel/MainPanel";
+import TasksSection from "./TasksSection/TasksSection";
 
 const InformativeSection = props => {
     const location = useLocation();
@@ -17,6 +18,8 @@ const InformativeSection = props => {
             case 'devices/add-device':
             case 'devices/edit-device':
                 return <DevicesSection/>;
+            case 'tasks':
+                return <TasksSection/>;
             case 'spaces':
             case 'spaces/add-space':
             case 'spaces/edit-space':
@@ -35,6 +38,9 @@ const InformativeSection = props => {
 
     return (
         <div className="informativeSection">
+            <div className="alertSection">
+
+            </div>
             {generateSection()}
         </div>
     )

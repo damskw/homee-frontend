@@ -11,17 +11,49 @@ import ProfilerFullWide from "../../../Profiler/ProfilerFullWide/ProfilerFullWid
 import SingleDevice from "../../../DevicesSection/DevicesContent/DisplayDevices/SingleDevice/SingleDevice";
 import SmallDownloadButton from "../../../../../Buttons/SmallDownloadButton/SmallDownloadButton";
 import {authenticate} from "../../../../../../Authenticate/authenticate";
+import SingleSpaceUser from "./SingleSpaceUser/SingleSpaceUser";
+import AddTaskForm from "./AddTaskForm/AddTaskForm";
+import {Alert} from "@mui/material";
+import SingleTaskModal from "./SingleTaskModal/SingleTaskModal";
+import * as PropTypes from "prop-types";
 
 
+function DataGrid(props) {
+    return null;
+}
+
+DataGrid.propTypes = {
+    initialState: PropTypes.shape({
+        pagination: PropTypes.shape({
+            paginationModel: PropTypes.shape({
+                pageSize: PropTypes.number,
+                page: PropTypes.number
+            })
+        })
+    }),
+    pageSizeOptions: PropTypes.arrayOf(PropTypes.number),
+    columns: PropTypes.any,
+    checkboxSelection: PropTypes.bool,
+    rows: PropTypes.any
+};
 const DetailedSpace = props => {
 
     const navigate = useNavigate();
     const {spaceId} = useParams();
+    const [taskUser, setTaskUser] = useState(null);
     const [space, setSpace] = useState(null);
     const [isModal, setIsModal] = useState(false);
+    const [isAlert, setIsAlert] = useState(false);
+    const [alertSeverity, setAlertSeverity] = useState('');
+    const [alertText, setAlertText] = useState('');
+    const [isTaskModal, setIsTaskModal] = useState(false);
+    const [isAddingTask, setIsAddingTask] = useState(false);
+    const [userTasks, setUserTasks] = useState([]);
     const [devices, setDevices] = useState([]);
     const [isInviteSent, setIsInviteSent] = useState(false);
     const [isOwner, setIsOwner] = useState(false);
+    const [isShowingUsers, setIsShowingUsers] = useState(false);
+    const [spaceUsers, setSpaceUsers] = useState([]);
     const devicesList = devices.map((d) => {
             return <SingleDevice key={d.id} device={d}/>
         }
@@ -45,6 +77,7 @@ const DetailedSpace = props => {
             const devices = await dataHandler.getDevicesForSpace(spaceId);
             setDevices(devices);
         }
+
         fetchSpace();
         fetchDevices();
         const user = authenticate.getUser();
@@ -67,9 +100,61 @@ const DetailedSpace = props => {
         )
     }
 
+    const fetchUsersInSpace = async () => {
+        const usersDb = await dataHandler.getUsersForSpace(spaceId);
+        const usersList = usersDb.map((u) => {
+                return <SingleSpaceUser onTaskListClick={() => handleOnViewTasksClick(u)} onPlusClick={() => handleOnAddTaskClick(u)} key={u.id} user={u}/>
+            }
+        );
+        setSpaceUsers(usersList);
+    }
+
+    const fetchUserTasks = async (userId) => {
+        const userTasksDb = await dataHandler.getTasksForUser(userId);
+        const userTaskList = userTasksDb.map((t) => {
+            return <SingleTaskModal key={t.id} task={t}/>
+        })
+        setUserTasks(userTaskList);
+    }
+
+    const handleOnShowUsersClick = async () => {
+        setIsShowingUsers(!isShowingUsers);
+        if (spaceUsers.length === 0) {
+            await fetchUsersInSpace();
+        }
+    }
+
+    const handleOnAddTaskClick = (u) => {
+        setIsTaskModal(true);
+        setIsAddingTask(true);
+        setTaskUser(u);
+    }
+
+    const handleOnViewTasksClick = async (user) => {
+        setTaskUser(user);
+        setIsTaskModal(true);
+        setIsAddingTask(false);
+        if (userTasks.length === 0) {
+            await fetchUserTasks(user.id);
+        }
+    }
+
     const profilerWideSectionContent = () => {
         return (
             <div className="detailedSpaceWide">
+                <div className="usersInSpaceWrapper">
+                    <div className="usersInSpace">
+                        <div className="usersInSpaceHeader" onClick={handleOnShowUsersClick}>
+                            <div className="usersInSpaceHeaderTitle">
+                                <span>{isShowingUsers ? "Hide users" : "Show users"}</span>
+                            </div>
+                            <i className={isShowingUsers ? "fa-solid fa-arrow-down rotate" : "fa-solid fa-arrow-down noRotate"}></i>
+                        </div>
+                        <div className={isShowingUsers ? "usersShowing" : "usersHidden"}>
+                            {spaceUsers}
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <h4 className="h4noBottom">{space && space.name}'s devices</h4>
                     <span className="spanGrey">All devices associated with this space</span>
@@ -81,10 +166,64 @@ const DetailedSpace = props => {
         )
     }
 
+    const onAddTaskSuccessSubmit = () => {
+        setIsTaskModal(false);
+        setAlertSeverity('success')
+        setAlertText("Task has been added successfully.");
+        setIsAlert(true);
+    }
+
+    const onTaskAddFailSubmit = () => {
+        setIsTaskModal(false);
+        setAlertSeverity('error')
+        setAlertText("Error, task couldn't be added. Please check input data and try again.");
+        setIsAlert(true);
+    }
+
+    const taskModalContentAddTask = () => {
+        return (
+            <>
+                <AddTaskForm onFailSubmit={onTaskAddFailSubmit} onSuccessSubmit={onAddTaskSuccessSubmit} userId={taskUser.id} devices={devices}/>
+            </>
+        )
+    }
+
+    const taskModalContentViewTasks = () => {
+        return (
+            <>
+                <h2>Tasks for user {taskUser.username}</h2>
+                <div className="allTasksModal">
+                    <div className="singleTaskModalDescriptions">
+                        <div className="singleTaskModalFilledDescription">
+                            <span>Name</span>
+                        </div>
+                        <div className="singleTaskModalFilledDescription">
+                            <span>Description</span>
+                        </div>
+                        <span>Space</span>
+                        <span>Device</span>
+                        <span>Creation date</span>
+                        <span>Deadline</span>
+                        <span>Is done</span>
+                        <span>Days left</span>
+                    </div>
+                    {userTasks}
+                </div>
+            </>
+        )
+    }
+
     const profilerContent = () => {
         return (
             <div>
-                {isModal ? <PropsContentModal content={isInviteSent ? modalContentInviteSent() : modalContent()} onClose={() => setIsModal(false)}/> : null}
+                {isModal ? <PropsContentModal content={isInviteSent ? modalContentInviteSent() : modalContent()}
+                                              onClose={() => setIsModal(false)}/> : null}
+                {isTaskModal ? <PropsContentModal content={isAddingTask ? taskModalContentAddTask() : taskModalContentViewTasks()}
+                                              onClose={() => setIsTaskModal(false)}/> : null}
+                {isAlert ? (
+                    <Alert onClose={() => setIsAlert(false)} severity={alertSeverity} variant="filled">{alertText}</Alert>
+                ) : null}
+                <br/>
                 <ProfilerHeader profilerImage={tempImage} name={space && space.name} nameUnder="Your space"
                                 buttonsContent={profilerContentButtons()}/>
                 <ProfilerFullWide content={profilerWideSectionContent()}/>
