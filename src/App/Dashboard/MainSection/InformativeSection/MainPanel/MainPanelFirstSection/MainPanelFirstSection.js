@@ -41,9 +41,9 @@ const MainPanelFirstSection = props => {
     return (
         <div className="mainPanelFirstSection">
             <MuiBox onClick={() => navigate('/dashboard/devices')} iconClass="fa-solid fa-display" headerText="Devices" valueText={numberOfUserDevices} downInfoText="Total number of devices linked to your account."/>
-            <MuiBox onClick={() => navigate('/dashboard/spaces')} headerText="Spaces" valueText={numberOfUserSpaces} downInfoText="Total number of spaces linked to your account." iconColor="linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232))"/>
-            <MuiBox onClick={() => navigate('/dashboard/devices')} headerText="Documents" valueText={numberOfDocuments} downInfoText="Total number of documents linked to your account." iconColor="linear-gradient(195deg, rgb(102, 187, 106), rgb(67, 160, 71))"/>
-            <MuiBox onClick={() => navigate('/dashboard/devices')} headerText="Reminders" valueText={numberOfNotificationEvents} downInfoText="Total number of reminders you have set for your account." iconColor="linear-gradient(195deg, rgb(236, 64, 122), rgb(216, 27, 96))"/>
+            <MuiBox onClick={() => navigate('/dashboard/spaces')} iconClass="fa-solid fa-location-dot" headerText="Spaces" valueText={numberOfUserSpaces} downInfoText="Total number of spaces linked to your account." iconColor="linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232))"/>
+            <MuiBox onClick={() => navigate('/dashboard/devices')} iconClass="fa-solid fa-file" headerText="Documents" valueText={numberOfDocuments} downInfoText="Total number of documents linked to your account." iconColor="linear-gradient(195deg, rgb(235, 255, 122), rgb(245, 203, 49))"/>
+            <MuiBox onClick={() => navigate('/dashboard/devices')} iconClass="fa-solid fa-bell" headerText="Reminders" valueText={numberOfNotificationEvents} downInfoText="Total number of reminders you have set for your account." iconColor="linear-gradient(195deg, rgb(236, 64, 122), rgb(216, 27, 96))"/>
         </div>
     )
 }

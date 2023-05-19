@@ -19,6 +19,7 @@
   "deleteDevice": "api/v1/devices/$deviceId",
   "assignDeviceToSpace": "api/v1/devices?deviceId=$deviceId&spaceId=$spaceId",
   "getUserDevices": "api/v1/devices?userId=$userId",
+  "getUsersForSpace": "api/v1/users?spaceId=$spaceId",
   "searchForUserDevices" : "api/v1/devices?userId=$userId&search=$search",
   "getSpaceDevices": "api/v1/devices?spaceId=$spaceId",
   "getDeviceTypes": "api/v1/devices/types",
@@ -52,5 +53,11 @@
   "getNotesForDevice": "api/v1/notes?deviceId=$deviceId",
   "getUserNotifications": "api/v1/notifications?userId=$userId",
   "markNotificationAsRead": "api/v1/notifications/$id?read",
-  "deleteNotification": "api/v1/notifications/$id"
+  "deleteNotification": "api/v1/notifications/$id",
+  "addNewTask": "api/v1/tasks",
+  "deleteTask": "api/v1/tasks/$taskId",
+  "getTask": "api/v1/tasks/$taskId",
+  "getTasksForUser": "api/v1/tasks?userId=$userId",
+  "getTasksForUserAndSpace": "api/v1/tasks?userId=$userId&spaceId=$spaceId",
+  "markTaskAsDone": "api/v1/tasks/$taskId?done"
 }

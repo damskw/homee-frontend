@@ -144,6 +144,10 @@ export let dataHandler = {
       const getActivitiesUrl = api.apiUrl + api.getActivitiesForUserDevices.replace("$userId", userId);
       return await apiGet(getActivitiesUrl);
     },
+    getUsersForSpace: async function (spaceId) {
+      const getUsersForSpaceUrl = api.apiUrl + api.getUsersForSpace.replace("$spaceId", spaceId);
+      return await apiGet(getUsersForSpaceUrl);
+    },
     getActivitiesForSingleDevice: async function(deviceId) {
       const getActivitiesUrl = api.apiUrl + api.getActivitiesForSingleDevice.replace("$deviceId", deviceId);
       return await apiGet(getActivitiesUrl);
@@ -188,6 +192,29 @@ export let dataHandler = {
     deleteNotification: async function (notificationId) {
         const deleteNotificationUrl = api.apiUrl + api.deleteNotification.replace("$id", notificationId);
         return await apiDelete(deleteNotificationUrl);
+    },
+    addNewTask: async function (data) {
+        return await apiPost(api.apiUrl + api.addNewTask, data);
+    },
+    deleteTask: async function (taskId) {
+        const deleteTaskUrl = api.apiUrl + api.deleteTask.replace("$taskId", taskId);
+        return await apiDelete(deleteTaskUrl);
+    },
+    getTask: async function (taskId) {
+        const getTaskUrl = api.apiUrl + api.getTask.replace("$taskId", taskId);
+        return await apiGet(getTaskUrl);
+    },
+    getTasksForUser: async function (userId) {
+        const getTasksForUserUrl = api.apiUrl + api.getTasksForUser.replace("$userId", userId);
+        return await apiGet(getTasksForUserUrl);
+    },
+    getTasksForUserAndSpace: async function (userId, spaceId) {
+        const getTasksForUserAndSpaceUrl = api.apiUrl + api.getTasksForUserAndSpace.replace("$userId", userId).replace("$spaceId", spaceId);
+        return await apiGet(getTasksForUserAndSpaceUrl);
+    },
+    markTaskAsDone: async function (taskId) {
+        const markTaskAsDoneUrl = api.apiUrl + api.markTaskAsDone.replace("$taskId", taskId);
+        return apiPutNoBody(markTaskAsDoneUrl);
     }
 }
 

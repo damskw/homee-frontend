@@ -4,9 +4,13 @@ const SingleCard = props => {
 
     return (
         <div className="singleCard">
-            <img src={props.image} alt="not found"></img>
-            <h2>{props.header}</h2>
-            <p>{props.text}</p>
+            <div className="singleCardTop">
+                <img src={props.image} alt="not found"></img>
+                <h2>{props.header}</h2>
+            </div>
+            <div className="singleCardBottom">
+                <p>{props.text}</p>
+            </div>
         </div>
 
     )

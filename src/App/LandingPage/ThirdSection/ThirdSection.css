@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     padding-top: 8em;
-    padding-bottom: 8em;
+    padding-bottom: 4em;
     background-color: #3D3939;
     color: white;
     gap: 5em;
@@ -10,6 +10,11 @@
 
 .dashboardScreenshot img {
     width: 30vw;
+    border-radius: 0.5em;
+}
+
+.blurred {
+    filter: blur(3px);
 }
 
 .infos {
@@ -23,4 +28,11 @@
 
 .information {
     font-size: 2em;
+}
+
+.imageBehind {
+    position: relative;
+    bottom: 13em;
+    z-index: 0;
+    left: 2em;
 }

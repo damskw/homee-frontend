@@ -3,8 +3,16 @@ import './LogoTop.css'
 import React from "react";
 
 const LogoTop = props => {
+
+    const onClickScrollToTop = () => {
+        const topSection = document.querySelector(".topSection");
+        if (topSection) {
+            topSection.scrollIntoView({behavior: "smooth"});
+        }
+    }
+
     return (
-        <img className="logoTop" src={logo} alt="logo"></img>
+        <img onClick={() => onClickScrollToTop()} className="logoTop" src={logo} alt="logo"></img>
     )
 }
 
