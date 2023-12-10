@@ -7,9 +7,13 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Project Description
+#### Project Description
 
-Web application based on microservices for home (and possibile business) users to store, manage and maintain devices in your home/business area. Manage your warranties, documents and store any information you'd like. Set custom notifications, be notified of any future repairs or any upcoming events. See device's history, browse through all costs spend and view repair details. Managing your home or business devices has never been easier.
+This is a front-end side of a Homee web application.
+
+Technologies used: `JavaScript, HTML5, CSS3`
+
+Homee is a web application based on microservices for home (and possibile business) users to store, manage and maintain devices in your home/business area. Manage your warranties, documents and store any information you'd like. Set custom notifications, be notified of any future repairs or any upcoming events. See device's history, browse through all costs spend and view repair details. Managing your home or business devices has never been easier.
 
 ### Landing Page
 
